@@ -1,0 +1,2950 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#140b1c">
+<title>Akanksha Cosmetics Shop | AC VIP</title>
+
+<style>
+:root {
+  --bg: #100a18;
+  --panel: #21142b;
+  --pink: #ff4fa3;
+  --gold: #f3cf91;
+  --purple: #8d48d0;
+  --text: #fff5fc;
+  --muted: #d3bdd9;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: radial-gradient(ellipse at top, #482052, var(--bg) 65%);
+  color: var(--text);
+  font-family: Arial, sans-serif;
+  transition: .3s;
+}
+body.light {
+  --bg: #fff3f9;
+  --panel: #fff;
+  --text: #35182f;
+  --muted: #76566f;
+  background: #fff3f9;
+}
+button, input { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; }
+button:focus-visible, a:focus-visible, input:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* MOVING AC VIP LOGO */
+.topline {
+  text-align: center;
+  color: var(--gold);
+  padding: 8px;
+  background: #1d1026;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--bg);
+  border-bottom: 1px solid #e7b9e044;
+  box-shadow: 0 8px 25px #0002;
+}
+.header-inner {
+  max-width: 1250px;
+  margin: auto;
+  padding: 13px 4%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.ac-logo {
+  width: 54px;
+  height: 54px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  color: var(--gold);
+  font-size: 22px;
+  font-weight: 900;
+  background: linear-gradient(135deg,#392044,#130b1c);
+  box-shadow: 0 0 17px #ff4fa366, inset 0 0 12px #e7b9e044;
+  animation: logoJump 2.2s ease-in-out infinite,
+             logoGlow 3s ease-in-out infinite alternate;
+}
+@keyframes logoJump {
+  0%,100% { transform: translateY(0) rotate(0); }
+  30% { transform: translateY(-5px) rotate(-3deg); }
+  60% { transform: translateY(0) rotate(3deg); }
+}
+@keyframes logoGlow {
+  from { box-shadow: 0 0 8px #ff4fa344; }
+  to { box-shadow: 0 0 26px #ff4fa399,0 0 12px #edc58c66; }
+}
+.brand-name {
+  font-weight: 900;
+  color: var(--gold);
+  font-size: clamp(13px,2vw,20px);
+}
+.brand-sub {
+  color: var(--muted);
+  font-size: 10px;
+  margin-top: 5px;
+  letter-spacing: 2px;
+}
+.vip-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.vip-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 11px 14px;
+  border-radius: 25px;
+  border: 1px solid var(--gold);
+  color: white;
+  background: linear-gradient(120deg,#d72c86,#7838bd);
+  font-weight: bold;
+  box-shadow: 0 0 13px #ff4fa333;
+  transition: transform .25s, box-shadow .25s;
+}
+.vip-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 23px #ff4fa377;
+}
+.vip-btn.secondary {
+  background: linear-gradient(120deg,#34203e,#1a1122);
+}
+.vip-btn.gold {
+  color: #29152c;
+  background: linear-gradient(120deg,#ffe6ad,#d9a85e);
+}
+.cart-count {
+  display: inline-grid;
+  place-items: center;
+  background: white;
+  color: #a01869;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-size: 12px;
+}
+.menu-btn {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--text);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* SEARCH */
+.search-area {
+  max-width: 900px;
+  margin: 22px auto 0;
+  padding: 0 5%;
+}
+.search-box {
+  display: flex;
+  gap: 9px;
+  padding: 8px;
+  border: 1px solid #f3cf9177;
+  border-radius: 40px;
+  background: var(--panel);
+  box-shadow: 0 0 22px #a747a322;
+}
+.search-box input {
+  width: 100%;
+  min-width: 0;
+  background: transparent;
+  border: 0;
+  color: var(--text);
+  padding: 10px 13px;
+  outline: none;
+}
+
+/* HERO */
+.hero {
+  min-height: 460px;
+  display: flex;
+  align-items: center;
+  padding: 65px 7%;
+  background:
+    radial-gradient(ellipse at 85% 30%,#aa399844,transparent 45%),
+    linear-gradient(135deg,#170e22,#2b1236 65%,#100a18);
+  overflow: hidden;
+}
+.hero-content { max-width: 720px; }
+.eyebrow {
+  color: var(--gold);
+  letter-spacing: 3px;
+  font-size: 12px;
+  font-weight: bold;
+}
+.hero h1 {
+  font-size: clamp(36px,6vw,68px);
+  margin: 20px 0;
+  line-height: 1.12;
+}
+.hero h1 span {
+  color: var(--pink);
+  text-shadow: 0 0 22px #ff4fa355;
+}
+.hero p {
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 620px;
+}
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 25px;
+}
+
+/* SECTIONS AND PRODUCT CARDS */
+section.content {
+  max-width: 1250px;
+  margin: auto;
+  padding: 55px 4%;
+  scroll-margin-top: 90px;
+}
+.section-title { text-align: center; margin-bottom: 28px; }
+.section-title h2 { font-size: clamp(25px,4vw,36px); margin-bottom: 9px; }
+.section-title span { color: var(--gold); }
+.section-title p, .muted { color: var(--muted); }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4,minmax(0,1fr));
+  gap: 17px;
+}
+.card {
+  min-width: 0;
+  padding: 15px;
+  border-radius: 17px;
+  border: 1px solid #e4b8df33;
+  background: var(--panel);
+  transition: transform .3s, box-shadow .3s;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px #ff4fa322;
+}
+.product-visual {
+  min-height: 145px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-size: 60px;
+  background: linear-gradient(135deg,#402344,#21132c);
+  margin-bottom: 14px;
+}
+.product-tag {
+  display: inline-block;
+  font-size: 10px;
+  padding: 5px 8px;
+  color: var(--gold);
+  border: 1px solid #f3cf9155;
+  border-radius: 15px;
+  margin-bottom: 9px;
+}
+.card h3 { font-size: 16px; margin-bottom: 8px; }
+.price { color: var(--gold); font-size: 21px; font-weight: bold; margin: 12px 0; }
+.card-actions { display: grid; gap: 8px; }
+.card-actions button { width: 100%; }
+.empty {
+  text-align: center;
+  padding: 25px;
+  color: var(--muted);
+  grid-column: 1/-1;
+}
+.location-box {
+  padding: 25px;
+  border: 1px solid #e4b8df33;
+  background: var(--panel);
+  border-radius: 18px;
+  text-align: center;
+}
+.location-box p { color: var(--muted); line-height: 1.9; }
+.social-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 18px;
+}
+footer {
+  text-align: center;
+  border-top: 1px solid #e4b8df33;
+  padding: 28px 15px;
+  color: var(--muted);
+}
+footer a { color: var(--gold); margin: 0 7px; }
+
+/* WHATSAPP FLOATING BUTTON */
+.whatsapp-float {
+  position: fixed;
+  right: 17px;
+  bottom: 18px;
+  z-index: 15;
+  border-radius: 40px;
+  padding: 14px 18px;
+  color: white;
+  background: #19bd65;
+  box-shadow: 0 6px 22px #0005;
+  font-weight: bold;
+}
+
+/* POPUP WINDOWS */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  padding: 18px;
+  background: #08050bdc;
+  align-items: center;
+  justify-content: center;
+}
+.modal.show { display: flex; }
+.modal-box {
+  width: 100%;
+  max-width: 430px;
+  max-height: 85vh;
+  overflow: auto;
+  padding: 25px;
+  border: 1px solid var(--gold);
+  border-radius: 20px;
+  background: var(--panel);
+  box-shadow: 0 0 35px #ff4fa333;
+}
+.modal-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.close-btn {
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  font-size: 26px;
+}
+.modal-box input {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #e4b8df55;
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--text);
+  margin: 9px 0 14px;
+}
+.modal-box button.full { width: 100%; margin-top: 10px; }
+.cart-item {
+  padding: 12px 0;
+  border-bottom: 1px solid #e4b8df33;
+}
+.cart-item button { margin-top: 8px; }
+.notice {
+  font-size: 13px;
+  margin-top: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* MOBILE */
+@media(max-width:900px) {
+  .grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .menu-btn { display: block; }
+  .header-inner { flex-wrap: wrap; }
+  .vip-buttons { order: 3; width: 100%; }
+  .vip-buttons .vip-btn { flex: 1; padding: 10px 6px; font-size: 12px; }
+  nav {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+    width: 100%;
+    padding: 18px;
+    background: var(--panel);
+    border-radius: 12px;
+  }
+  nav.open { display: flex; }
+}
+@media(max-width:500px) {
+  .brand-sub { letter-spacing: 1px; font-size: 9px; }
+  .ac-logo { width: 44px; height: 44px; font-size: 19px; }
+  .hero { min-height: 200px; padding: 22px 6%; }
+  section.content { padding: 40px 4%; }
+  .grid { gap: 10px; }
+  .card { padding: 10px; }
+  .product-visual { min-height: 110px; font-size: 47px; }
+  .card h3 { font-size: 14px; }
+  .price { font-size: 18px; }
+  .card-actions .vip-btn { font-size: 12px; padding: 10px 5px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="topline">✦ WELCOME TO AKANKSHA COSMETICS VIP STORE ✦</div>
+
+<header>
+  <div class="header-inner">
+    <a href="#home" class="brand" aria-label="Akanksha Cosmetics Home">
+      <span class="ac-logo">AC</span>
+      <span>
+        <span class="brand-name">AKANKSHA COSMETICS</span>
+        <div class="brand-sub">✦ VIP BEAUTY COLLECTION ✦</div>
+      </span>
+    </a>
+
+    <button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">☰</button>
+
+    <nav id="nav">
+      <a href="#home" onclick="closeMenu()">Home</a>
+      <a href="#products" onclick="closeMenu()">Products</a>
+      <a href="#location" onclick="closeMenu()">Location</a>
+      <a href="#social" onclick="closeMenu()">Social Media</a>
+    </nav>
+
+    <div class="vip-buttons">
+      <button class="vip-btn" onclick="openLogin()">♙ Login</button>
+      <button class="vip-btn" onclick="focusSearch()">⌕ Search</button>
+      <button class="vip-btn" onclick="openCart()">
+        🛒 Cart <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="search-area" id="searchArea">
+  <div class="search-box">
+    <input id="searchInput" type="search"
+      placeholder="🔍 Search lipstick, perfume, bangles..."
+      aria-label="Search products">
+    <button class="vip-btn" onclick="searchProducts()">Search</button>
+  </div>
+</div>
+
+<main>
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="eyebrow"><H2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;💄✦ Yakubpur • Auraiya • (UP.79) ✦</H2></div>
+    <h1>&nbsp;&nbsp;&nbsp;&nbsp;Akanksha Cosmetics<br>&nbsp;&nbsp;&nbsp;&nbsp;CEO. Ankit Gauatam<span></span> </h1>
+    <p><h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;💄आपकी खूबसूरती, हमारा विश्वास ❤️
+Akanksha Cosmetics Shop</h3>
+<h3>&nbsp;&nbsp;&nbsp;✨Premium • Cosmetics • Jewellery • Handbags
+            • Beauty Products💕</h3>
+      </p>
+    <div class="hero-actions">
+      <a href="#products" class="vip-btn gold">✦ Shop Now</a>
+      <a class="vip-btn" href="https://wa.me/917983199902"
+         target="_blank" rel="noopener">💬 WhatsApp Order</a>
+      <a class="vip-btn secondary" href="tel:+917983199902">📞 Call Now</a>
+    </div>
+  </div>
+</section>
+
+<!-- 💎 AKANKSHA COSMETICS VIP PREMIUM PRODUCT SECTION -->
+<section id="akc-vip-store">
+
+<style>
+#akc-vip-store {
+    --pink: #ff4fa3;
+    --purple: #a855f7;
+    --gold: #ffd76a;
+    --dark: #100817;
+    --card: #1b1025;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    padding: 24px 12px;
+    background:
+        radial-gradient(ellipse at top left, #55206b 0%, transparent 45%),
+        radial-gradient(ellipse at bottom right, #511b42 0%, transparent 40%),
+        linear-gradient(135deg, #0b0710, #1b0d29 55%, #09060e);
+    border-radius: 18px;
+    box-sizing: border-box;
+}
+
+#akc-vip-store * {
+    box-sizing: border-box;
+}
+
+#akc-vip-store .akc-header {
+    text-align: center;
+    padding: 15px 5px 24px;
+}
+
+#akc-vip-store .akc-crown {
+    font-size: 38px;
+}
+
+#akc-vip-store .akc-header h2 {
+    font-size: clamp(25px, 5vw, 38px);
+    margin: 8px 0;
+    color: var(--gold);
+    letter-spacing: 1px;
+    text-shadow: 0 0 18px #ff4fa366;
+}
+
+#akc-vip-store .akc-header p {
+    color: #eadcf5;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+#akc-vip-store .akc-cartbar {
+    max-width: 1200px;
+    margin: 0 auto 20px;
+    padding: 13px 16px;
+    border: 1px solid #ffd76a66;
+    border-radius: 14px;
+    background: linear-gradient(120deg, #33133f, #21102c);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+#akc-vip-store .akc-cartbar strong {
+    color: var(--gold);
+}
+
+#akc-vip-store .akc-clear {
+    background: transparent;
+    color: #fff;
+    border: 1px solid #ffffff55;
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+#akc-vip-store .akc-grid {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 17px;
+}
+
+#akc-vip-store .akc-product {
+    min-width: 0;
+    overflow: hidden;
+    background: linear-gradient(150deg, #291735, #140d1c 75%);
+    border: 1px solid #d78aff40;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px #0005;
+    transition: transform .25s, border-color .25s;
+}
+
+#akc-vip-store .akc-product:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold);
+}
+
+#akc-vip-store .akc-image-wrap {
+    position: relative;
+    height: 190px;
+    background: #2b1935;
+    overflow: hidden;
+}
+
+#akc-vip-store .akc-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+#akc-vip-store .akc-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 6px 9px;
+    border-radius: 20px;
+    color: #24102c;
+    background: linear-gradient(135deg, #fff1b5, #ffd76a);
+    font-size: 11px;
+    font-weight: 800;
+}
+
+#akc-vip-store .akc-info {
+    padding: 13px;
+}
+
+#akc-vip-store .akc-name {
+    font-size: 15px;
+    line-height: 1.45;
+    min-height: 42px;
+    margin: 0 0 8px;
+    color: #fff;
+}
+
+#akc-vip-store .akc-price {
+    margin: 8px 0 13px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+}
+
+#akc-vip-store .akc-new-price {
+    font-size: 19px;
+    font-weight: 800;
+    color: var(--gold);
+}
+
+#akc-vip-store .akc-old-price {
+    color: #b8aabd;
+    font-size: 13px;
+    text-decoration: line-through;
+}
+
+#akc-vip-store .akc-discount {
+    color: #83ffbd;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+#akc-vip-store .akc-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 9px;
+}
+
+#akc-vip-store .akc-btn {
+    width: 100%;
+    min-height: 42px;
+    border: 0;
+    border-radius: 10px;
+    padding: 10px 8px;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform .2s, filter .2s;
+}
+
+#akc-vip-store .akc-btn:hover {
+    transform: scale(1.02);
+    filter: brightness(1.1);
+}
+
+#akc-vip-store .akc-buy {
+    color: #fff;
+    background: linear-gradient(110deg, #ff3298, #a329ed);
+    box-shadow: 0 4px 15px #dc37b34d;
+}
+
+#akc-vip-store .akc-add {
+    color: #24112a;
+    background: linear-gradient(110deg, #ffeaa0, #ffbd52);
+    box-shadow: 0 4px 15px #ffc65a30;
+}
+
+#akc-vip-store .akc-footer {
+    max-width: 1200px;
+    margin: 25px auto 0;
+    text-align: center;
+    color: #e9d9f0;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+#akc-vip-store .akc-toast {
+    position: fixed;
+    z-index: 999999;
+    left: 50%;
+    bottom: 22px;
+    transform: translateX(-50%);
+    width: max-content;
+    max-width: 90%;
+    background: #281234;
+    color: #fff;
+    border: 1px solid var(--gold);
+    padding: 12px 18px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px #0008;
+    display: none;
+    text-align: center;
+    font-size: 14px;
+}
+
+@media (max-width: 900px) {
+    #akc-vip-store .akc-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    #akc-vip-store .akc-image-wrap {
+        height: 170px;
+    }
+}
+
+@media (max-width: 600px) {
+    #akc-vip-store {
+        padding: 16px 8px;
+    }
+
+    #akc-vip-store .akc-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    #akc-vip-store .akc-image-wrap {
+        height: 145px;
+    }
+
+    #akc-vip-store .akc-info {
+        padding: 10px;
+    }
+
+    #akc-vip-store .akc-name {
+        font-size: 13px;
+        min-height: 38px;
+    }
+
+    #akc-vip-store .akc-new-price {
+        font-size: 17px;
+    }
+
+    #akc-vip-store .akc-btn {
+        font-size: 12px;
+        padding: 9px 5px;
+    }
+}
+
+@media (max-width: 340px) {
+    #akc-vip-store .akc-grid {
+        grid-template-columns: 1fr;
+    }
+
+    #akc-vip-store .akc-image-wrap {
+        height: 220px;
+    }
+}
+</style>
+
+<div class="akc-header">
+    <div class="akc-crown">👑</div>
+    <h2>AKANKSHA COSMETICS</h2>
+    <p>
+        💎 VIP PREMIUM COLLECTION 💎<br>
+        Beauty • Fashion • Style — आपकी खूबसूरती, हमारा विश्वास ❤️
+    </p>
+</div>
+
+<div class="akc-cartbar">
+    <div>
+        🛒 My Cart:
+        <strong id="akc-cart-count">0</strong> Products
+        &nbsp; | &nbsp;
+        Total: <strong id="akc-cart-total">₹0</strong>
+    </div>
+
+    <button type="button" class="akc-clear" id="akc-clear-cart">
+        🗑️ Clear Cart
+    </button>
+</div>
+
+<div class="akc-grid" id="akc-product-grid"></div>
+
+<div class="akc-footer">
+    ✨ AKANKSHA COSMETICS SHOP ✨<br>
+    💬 WhatsApp Orders: Ankit Gautam<br>
+    📱 7983199902<br>
+    ❤️ Thank you for shopping with us!
+</div>
+
+<div class="akc-toast" id="akc-toast" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+    "use strict";
+
+    // WhatsApp number in international format without + sign.
+    const WHATSAPP_NUMBER = "917983199902";
+
+    // Change these sample prices and image URLs to your actual products.
+    const products = [
+        {
+            id: 1,
+            name: "💄 Premium Matte Lipstick",
+            emoji: "💄",
+            price: 149,
+            oldPrice: 499,
+            image: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=600&q=80"
+        },
+        {
+            id: 2,
+            name: "🧴 Face Serum",
+            emoji: "🧴",
+            price: 149,
+            oldPrice: 349,
+            image: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=600&q=80"
+        },
+        {
+            id: 3,
+            name: "💅 Nail Polish Collection",
+            emoji: "💅",
+            price: 149,
+            oldPrice: 449,
+            image: "https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=600&q=80"
+        },
+        {
+            id: 4,
+            name: "👜 Luxury Handbag",
+            emoji: "👜",
+            price: 499,
+            oldPrice: 799,
+            image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=600&q=80"
+        },
+        {
+            id: 5,
+            name: "💍 Royal Rani Haar",
+            emoji: "💍",
+            price: 149,
+            oldPrice: 499,
+            image: "https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=600&q=80"
+        },
+        {
+            id: 6,
+            name: "📿 Traditional Jewellery Set",
+            emoji: "📿",
+            price: 599,
+            oldPrice: 1099,
+            image: "https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=600&q=80"
+        },
+        {
+            id: 7,
+            name: "💫 Designer Bangles",
+            emoji: "💫",
+            price: 123,
+            oldPrice: 299,
+            image: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=600&q=80"
+        },
+        {
+            id: 8,
+            name: "🧴 Gentle Face Wash",
+            emoji: "🧴",
+            price: 139,
+            oldPrice: 249,
+            image: "https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?auto=format&fit=crop&w=600&q=80"
+        },
+        {
+            id: 9,
+            name: "🌸 Luxury Rose Perfume",
+            emoji: "🌸",
+            price: 399,
+            oldPrice: 799,
+            image: "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=600&q=80"
+        },
+        {
+            id: 10,
+            name: "💋 Shiny Lip Gloss",
+            emoji: "💋",
+            price: 159,
+            oldPrice: 229,
+            image: "https://images.unsplash.com/photo-1631214540242-6fefb2d8f2a8?auto=format&fit=crop&w=600&q=80"
+        },
+        {
+            id: 11,
+            name: "✨ Makeup Combo Kit",
+            emoji: "✨",
+            price: 599,
+            oldPrice: 1199,
+            image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=600&q=80"
+        },
+        {
+            id: 12,
+            name: "🪞 Premium Makeup Mirror",
+            emoji: "🪞",
+            price: 249,
+            oldPrice: 599,
+            image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=600&q=80"
+        },
+        {
+            id: 13,
+            name: "👁️ Kajal & Eyeliner Combo",
+            emoji: "👁️",
+            price: 149,
+            oldPrice: 349,
+            image: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=600&q=80"
+        },
+        {
+            id: 14,
+            name: "🧴 Moisturizing Cream",
+            emoji: "🧴",
+            price: 129,
+            oldPrice: 329,
+            image: "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=600&q=80"
+        },
+        {
+            id: 15,
+            name: "🎀 Stylish Shoulder Bag",
+            emoji: "🎀",
+            price: 499,
+            oldPrice: 999,
+            image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=600&q=80"
+        },
+        {
+            id: 16,
+            name: "👑 Bridal Jewellery Set",
+            emoji: "👑",
+            price: 599,
+            oldPrice: 1299,
+            image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80"
+        },
+        {
+            id: 17,
+            name: "💎 Elegant Earrings",
+            emoji: "💎",
+            price: 249,
+            oldPrice: 499,
+            image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80"
+        },
+        {
+            id: 18,
+            name: "🧴 Body Lotion",
+            emoji: "🧴",
+            price: 179,
+            oldPrice: 499,
+            image: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=600&q=80"
+        },
+        {
+            id: 19,
+            name: "💅 Nail Care Kit",
+            emoji: "💅",
+            price: 154,
+            oldPrice: 249,
+            image: "https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=600&q=80"
+        },
+        {
+            id: 20,
+            name: "🌺 Party Wear Necklace",
+            emoji: "🌺",
+            price: 449,
+            oldPrice: 699,
+            image: "https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=600&q=80"
+        },
+        {
+            id: 21,
+            name: "🎁 Beauty & Fashion Gift Set",
+            emoji: "🎁",
+            price: 399,
+            oldPrice: 1699,
+            image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=600&q=80"
+        }
+    ];
+
+    const root = document.getElementById("akc-vip-store");
+    if (!root) return;
+
+    const grid = root.querySelector("#akc-product-grid");
+    const countElement = root.querySelector("#akc-cart-count");
+    const totalElement = root.querySelector("#akc-cart-total");
+    const toast = root.querySelector("#akc-toast");
+
+    let cart = [];
+
+    function rupees(amount) {
+        return "₹" + Number(amount).toLocaleString("en-IN");
+    }
+
+    function showToast(message) {
+        toast.textContent = message;
+        toast.style.display = "block";
+
+        clearTimeout(showToast.timer);
+        showToast.timer = setTimeout(function () {
+            toast.style.display = "none";
+        }, 2500);
+    }
+
+    // Create safe product cards.
+    function renderProducts() {
+        grid.replaceChildren();
+
+        products.forEach(function (product) {
+            const card = document.createElement("article");
+            card.className = "akc-product";
+
+            const imageWrap = document.createElement("div");
+            imageWrap.className = "akc-image-wrap";
+
+            const image = document.createElement("img");
+            image.className = "akc-image";
+            image.src = product.image;
+            image.alt = product.name;
+            image.loading = "lazy";
+            image.onerror = function () {
+                image.onerror = null;
+                image.removeAttribute("src");
+                image.alt = product.emoji + " Product image unavailable";
+                image.style.display = "none";
+                imageWrap.style.display = "grid";
+                imageWrap.style.placeItems = "center";
+                imageWrap.style.fontSize = "64px";
+                imageWrap.textContent = product.emoji;
+            };
+
+            const badge = document.createElement("span");
+            badge.className = "akc-badge";
+            badge.textContent = "VIP PREMIUM";
+
+            imageWrap.append(image, badge);
+
+            const info = document.createElement("div");
+            info.className = "akc-info";
+
+            const name = document.createElement("h3");
+            name.className = "akc-name";
+            name.textContent = product.name;
+
+            const prices = document.createElement("div");
+            prices.className = "akc-price";
+
+            const newPrice = document.createElement("span");
+            newPrice.className = "akc-new-price";
+            newPrice.textContent = rupees(product.price);
+
+            const oldPrice = document.createElement("span");
+            oldPrice.className = "akc-old-price";
+            oldPrice.textContent = rupees(product.oldPrice);
+
+            const discount = document.createElement("span");
+            discount.className = "akc-discount";
+            discount.textContent = Math.round(
+                (1 - product.price / product.oldPrice) * 100
+            ) + "% OFF";
+
+            prices.append(newPrice, oldPrice, discount);
+
+            const actions = document.createElement("div");
+            actions.className = "akc-actions";
+
+            const buyButton = document.createElement("button");
+            buyButton.type = "button";
+            buyButton.className = "akc-btn akc-buy";
+            buyButton.textContent = "💬 Buy Now";
+            buyButton.addEventListener("click", function () {
+                buyNow(product.id);
+            });
+
+            const addButton = document.createElement("button");
+            addButton.type = "button";
+            addButton.className = "akc-btn akc-add";
+            addButton.textContent = "🛒 + Add Cart";
+            addButton.addEventListener("click", function () {
+                addToCart(product.id);
+            });
+
+            actions.append(buyButton, addButton);
+            info.append(name, prices, actions);
+            card.append(imageWrap, info);
+            grid.appendChild(card);
+        });
+    }
+
+    // Opens WhatsApp with the selected product's details.
+    function buyNow(productId) {
+        const product = products.find(function (item) {
+            return item.id === productId;
+        });
+
+        if (!product) return;
+
+        const message = [
+            "👑 *AKANKSHA COSMETICS — VIP ORDER*",
+            "",
+            "Hello Ankit Gautam! ❤️",
+            "I want to order this product:",
+            "",
+            product.emoji + " *Product:* " + product.name,
+            "💰 *Current Price:* " + rupees(product.price),
+            "🏷️ *Old Price:* " + rupees(product.oldPrice),
+            "🔢 *Quantity:* 1",
+            "🧾 *Total:* " + rupees(product.price),
+            "",
+            "📦 Please confirm availability and delivery.",
+            "👤 *Customer Name:* ",
+            "📱 *Phone Number:* ",
+            "🏠 *Delivery Address:* ",
+            "",
+            "Thank you! 💖"
+        ].join("\n");
+
+        const whatsappURL =
+            "https://wa.me/" + WHATSAPP_NUMBER +
+            "?text=" + encodeURIComponent(message);
+
+        // Direct click opens WhatsApp with a pre-filled message.
+        window.open(whatsappURL, "_blank", "noopener,noreferrer");
+    }
+
+    // Add a product to this page's cart.
+    function addToCart(productId) {
+        const product = products.find(function (item) {
+            return item.id === productId;
+        });
+
+        if (!product) return;
+
+        const existing = cart.find(function (item) {
+            return item.id === productId;
+        });
+
+        if (existing) {
+            existing.quantity += 1;
+        } else {
+            cart.push({
+                id: product.id,
+                name: product.name,
+                emoji: product.emoji,
+                price: product.price,
+                quantity: 1
+            });
+        }
+
+        updateCart();
+        showToast(product.emoji + " " + product.name + " added to cart!");
+    }
+
+    function updateCart() {
+        const totalQuantity = cart.reduce(function (sum, item) {
+            return sum + item.quantity;
+        }, 0);
+
+        const totalPrice = cart.reduce(function (sum, item) {
+            return sum + item.price * item.quantity;
+        }, 0);
+
+        countElement.textContent = totalQuantity;
+        totalElement.textContent = rupees(totalPrice);
+    }
+
+    // Clear the current cart.
+    root.querySelector("#akc-clear-cart").addEventListener("click", function () {
+        cart = [];
+        updateCart();
+        showToast("🛒 Cart cleared!");
+    });
+
+    renderProducts();
+    updateCart();
+})();
+</script>
+
+</section>
+<!-- 💎 END AKANKSHA COSMETICS VIP STORE -->
+
+</body>
+</html>
+
+<section class="content" id="products">
+  <div class="section-title">
+    <h2>💎 <span>VIP Collection</span></h2>
+    <p>Featured Products • Best Sellers • Premium Style</p>
+  </div>
+  <div class="grid" id="productGrid"></div>
+</section>
+
+<section class="content" id="location">
+  <div class="section-title">
+    <h2>📍 <span>Visit Our Store</span></h2>
+    <p>Akanksha Cosmetics Shop · Yakubpur, Auraiya, Uttar Pradesh</p>
+  </div>
+  <div class="location-box">
+    <h3>💎 Akanksha Cosmetics Shop</h3>
+    <p style="margin-top:12px">
+      Sunil Gupta Market, Yakubpur, Auraiya, UP<br>
+      📞 7983199902
+    </p>
+    <div class="social-row">
+      <a class="vip-btn" href="https://maps.google.com/?q=Sunil+Gupta+Market+Yakubpur+Auraiya"
+         target="_blank" rel="noopener">📍 Open Google Maps</a>
+      <a class="vip-btn" href="tel:+917983199902">📞 Call Now</a>
+      <a class="vip-btn" href="https://wa.me/917983199902"
+         target="_blank" rel="noopener">💬 WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<section class="content" id="social">
+  <div class="section-title">
+    <h2>📲 <span>Connect With Us</span></h2>
+    <p>Follow our latest collections and offers.</p>
+  </div>
+  <div class="social-row">
+    <!-- Replace the Instagram URL with the shop's actual profile -->
+    <a class="vip-btn" href=https://www.instagram.com/ayushi_gautam_pg7/
+       target="_blank" rel="noopener">📸 Instagram</a>
+    <a class="vip-btn" href=https://www.facebook.com/share/1EKfxRD25a/
+       target="_blank" rel="noopener">ⓕ Facebook</a>
+    <a class="vip-btn" href="https://wa.me/917983199902"
+       target="_blank" rel="noopener">💬 WhatsApp</a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <h3 style="color:var(--gold);margin-bottom:10px">💄 Akanksha Cosmetics Shop</h3>
+  <p>Sunil Gupta Market, Yakubpur, Auraiya, Uttar Pradesh</p>
+  <p style="margin-top:10px">© 2026 Akanksha Cosmetics Shop</p>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/917983199902"
+   target="_blank" rel="noopener">💬 WhatsApp</a>
+
+<!-- LOGIN POPUP -->
+<div class="modal" id="loginModal" role="dialog"
+     aria-modal="true" aria-labelledby="loginTitle">
+  <div class="modal-box">
+    <div class="modal-heading">
+      <h2 id="loginTitle" style="color:var(--gold)">✦ VIP Login</h2>
+      <button class="close-btn" onclick="closeModal('loginModal')"
+        aria-label="Close">×</button>
+    </div>
+    <p class="notice">अपने अकाउंट में प्रवेश करें। यह अभी फ्रंटएंड डेमो है।</p>
+    <form id="loginForm">
+      <label for="loginEmail">Email Address</label>
+      <input id="loginEmail" type="email" required
+        autocomplete="email" placeholder="Enter your email">
+      <label for="loginPassword">Password</label>
+      <input id="loginPassword" type="password" required
+        autocomplete="current-password" placeholder="Enter password">
+      <button class="vip-btn full" type="submit">Login Securely</button>
+    </form>
+    <p id="loginMessage" class="notice" aria-live="polite"></p>
+    <button class="vip-btn secondary full" onclick="closeModal('loginModal')">
+      Close
+    </button>
+  </div>
+</div>
+
+<!-- CART POPUP -->
+<div class="modal" id="cartModal" role="dialog"
+     aria-modal="true" aria-labelledby="cartTitle">
+  <div class="modal-box">
+    <div class="modal-heading">
+      <h2 id="cartTitle" style="color:var(--gold)">🛒 My VIP Cart</h2>
+      <button class="close-btn" onclick="closeModal('cartModal')"
+        aria-label="Close">×</button>
+    </div>
+    <div id="cartItems"></div>
+    <h3 id="cartTotal" style="margin-top:18px">Total: ₹0</h3>
+    <button class="vip-btn full" onclick="checkoutWhatsApp()">
+      💬 Order on WhatsApp
+    </button>
+    <button class="vip-btn secondary full" onclick="closeModal('cartModal')">
+      Continue Shopping
+    </button>
+    <p class="notice">Demo cart: ऑर्डर भेजने से पहले WhatsApp पर विवरण जाँचें।</p>
+  </div>
+</div>
+  
+
+<script>
+/* ===== DEMO PRODUCT DATA =====
+   Replace sample names and prices with real shop inventory.
+*/
+const products = [
+  {id:1, name:"Premium Lipstick", price:299, icon:"💄", tag:"BEST SELLER"},
+  {id:2, name:"Luxury Perfume", price:499, icon:"🌸", tag:"FEATURED"},
+  {id:3, name:"Fancy Bangles", price:199, icon:"💎", tag:"POPULAR"},
+  {id:4, name:"Ladies Handbag", price:699, icon:"👜", tag:"VIP PICK"},
+  {id:5, name:"Foundation", price:399, icon:"🧴", tag:"FEATURED"},
+  {id:6, name:"Golden Jhumka", price:249, icon:"✨", tag:"BEST SELLER"},
+  {id:7, name:"Nail Polish", price:99, icon:"💅", tag:"POPULAR"},
+  {id:8, name:"Face Wash", price:149, icon:"🫧", tag:"DAILY CARE"}
+];
+
+let cart = [];
+let wishlist = [];
+
+const grid = document.getElementById("productGrid");
+
+function renderProducts(list) {
+  grid.innerHTML = "";
+
+  if (!list.length) {
+    grid.innerHTML = '<p class="empty">कोई प्रोडक्ट नहीं मिला। दूसरा नाम खोजें।</p>';
+    return;
+  }
+
+  list.forEach(product => {
+    const card = document.createElement("article");
+    card.className = "card";
+
+    const visual = document.createElement("div");
+    visual.className = "product-visual";
+    visual.textContent = product.icon;
+    visual.setAttribute("aria-label", product.name);
+
+    const tag = document.createElement("span");
+    tag.className = "product-tag";
+    tag.textContent = product.tag;
+
+    const title = document.createElement("h3");
+    title.textContent = product.name;
+
+    const price = document.createElement("div");
+    price.className = "price";
+    price.textContent = "₹" + product.price;
+
+    const actions = document.createElement("div");
+    actions.className = "card-actions";
+
+    const add = document.createElement("button");
+    add.className = "vip-btn";
+    add.textContent = "🛒 Add to Cart";
+    add.addEventListener("click", () => addToCart(product.id));
+
+    const heart = document.createElement("button");
+    heart.className = "vip-btn secondary";
+    heart.textContent = wishlist.includes(product.id)
+      ? "♥ Saved" : "♡ Wishlist";
+    heart.addEventListener("click", () => toggleWishlist(product.id));
+
+    actions.append(add, heart);
+    card.append(visual, tag, title, price, actions);
+    grid.appendChild(card);
+  });
+}
+
+function searchProducts() {
+  const query = document.getElementById("searchInput")
+    .value.trim().toLowerCase();
+
+  renderProducts(products.filter(p =>
+    p.name.toLowerCase().includes(query) ||
+    p.tag.toLowerCase().includes(query)
+  ));
+}
+
+document.getElementById("searchInput")
+  .addEventListener("input", searchProducts);
+
+function focusSearch() {
+  document.getElementById("searchArea").scrollIntoView({behavior:"smooth"});
+  document.getElementById("searchInput").focus({preventScroll:true});
+}
+
+function addToCart(id) {
+  const existing = cart.find(item => item.id === id);
+  if (existing) existing.qty++;
+  else cart.push({id, qty:1});
+  updateCart();
+}
+
+function changeQty(id, amount) {
+  const item = cart.find(item => item.id === id);
+  if (!item) return;
+  item.qty += amount;
+  if (item.qty <= 0) cart = cart.filter(item => item.id !== id);
+  updateCart();
+}
+
+function updateCart() {
+  document.getElementById("cartCount").textContent =
+    cart.reduce((sum,item) => sum + item.qty, 0);
+
+  const container = document.getElementById("cartItems");
+  container.replaceChildren();
+
+  if (!cart.length) {
+    const empty = document.createElement("p");
+    empty.className = "notice";
+    empty.textContent = "आपका Cart अभी खाली है।";
+    container.appendChild(empty);
+  }
+
+  let total = 0;
+
+  cart.forEach(item => {
+    const product = products.find(p => p.id === item.id);
+    total += product.price * item.qty;
+
+    const row = document.createElement("div");
+    row.className = "cart-item";
+
+    const details = document.createElement("p");
+    details.textContent = product.name + " × " + item.qty +
+      " = ₹" + (product.price * item.qty);
+
+    const minus = document.createElement("button");
+    minus.className = "vip-btn secondary";
+    minus.textContent = "−";
+    minus.setAttribute("aria-label", "Decrease quantity");
+    minus.addEventListener("click", () => changeQty(item.id,-1));
+
+    const plus = document.createElement("button");
+    plus.className = "vip-btn secondary";
+    plus.textContent = "+";
+    plus.setAttribute("aria-label", "Increase quantity");
+    plus.addEventListener("click", () => changeQty(item.id,1));
+
+    row.append(details, minus, plus);
+    container.appendChild(row);
+  });
+
+  document.getElementById("cartTotal").textContent = "Total: ₹" + total;
+}
+
+function openCart() {
+  updateCart();
+  openModal("cartModal");
+}
+
+function toggleWishlist(id) {
+  wishlist = wishlist.includes(id)
+    ? wishlist.filter(item => item !== id)
+    : [...wishlist, id];
+  renderProducts(products.filter(p =>
+    (p.name + " " + p.tag).toLowerCase()
+      .includes(document.getElementById("searchInput").value.trim().toLowerCase())
+  ));
+}
+
+function checkoutWhatsApp() {
+  if (!cart.length) {
+    alert("पहले Cart में प्रोडक्ट जोड़ें।");
+    return;
+  }
+
+  const lines = cart.map(item => {
+    const p = products.find(product => product.id === item.id);
+    return p.name + " x " + item.qty + " = ₹" + p.price * item.qty;
+  });
+
+  const total = cart.reduce((sum,item) => {
+    const p = products.find(product => product.id === item.id);
+    return sum + p.price * item.qty;
+  },0);
+
+  const message = "Namaste Akanksha Cosmetics Shop! My order:\n" +
+    lines.join("\n") + "\nTotal: ₹" + total +
+    "\nPlease confirm availability and final price.";
+
+  window.open("https://wa.me/917983199902?text=" +
+    encodeURIComponent(message), "_blank", "noopener");
+}
+
+function openLogin() { openModal("loginModal"); }
+
+function openModal(id) {
+  document.getElementById(id).classList.add("show");
+}
+
+function closeModal(id) {
+  document.getElementById(id).classList.remove("show");
+}
+
+document.querySelectorAll(".modal").forEach(modal => {
+  modal.addEventListener("click", event => {
+    if (event.target === modal) modal.classList.remove("show");
+  });
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") {
+    document.querySelectorAll(".modal")
+      .forEach(modal => modal.classList.remove("show"));
+  }
+});
+
+function toggleMenu() {
+  document.getElementById("nav").classList.toggle("open");
+}
+
+function closeMenu() {
+  document.getElementById("nav").classList.remove("open");
+}
+
+function checkoutLoginDemo() {
+  // No real authentication is implemented in this frontend.
+}
+
+document.getElementById("loginForm").addEventListener("submit", event => {
+  event.preventDefault();
+  document.getElementById("loginMessage").textContent =
+    "यह UI डेमो है। असली Login के लिए सुरक्षित Backend और Database जोड़ना होगा।";
+});
+
+/* Dark/light theme */
+document.querySelector(".brand").addEventListener("click", () => {});
+function toggleTheme() {
+  document.body.classList.toggle("light");
+}
+
+/* Initial product display */
+renderProducts(products);
+updateCart();
+</script>
+</body>
+</html>
+
+<!-- 💎 Akanksha Cosmetics VIP Store -->
+
+<div class="product-card">
+    <div class="product-image">💄</div>
+    <h3>Premium Lipstick</h3>
+    <p>Price: ₹199</p>
+
+    <button onclick="buyNow(
+        'Premium Lipstick',
+        199,
+        '💄'
+    )">
+        🛒 Buy Now
+    </button>
+</div>
+
+<div class="product-card">
+    <div class="product-image">👜</div>
+    <h3>Luxury Handbag</h3>
+    <p>Price: ₹599</p>
+
+    <button onclick="buyNow(
+        'Luxury Handbag',
+        599,
+        '👜'
+    )">
+        🛒 Buy Now
+    </button>
+</div>
+
+<div class="product-card">
+    <div class="product-image">💍</div>
+    <h3>Royal Jewellery Set</h3>
+    <p>Price: ₹299</p>
+
+    <button onclick="buyNow(
+        'Royal Jewellery Set',
+        299,
+        '💍'
+    )">
+        🛒 Buy Now
+    </button>
+</div>
+
+<style>
+.product-card {
+    background: linear-gradient(145deg, #1a0928, #401044);
+    color: white;
+    padding: 22px;
+    margin: 18px auto;
+    max-width: 320px;
+    border-radius: 20px;
+    text-align: center;
+    border: 1px solid #ffd700;
+    box-shadow: 0 0 18px #a855f7;
+    font-family: Arial, sans-serif;
+}
+
+.product-image {
+    font-size: 65px;
+    margin-bottom: 12px;
+}
+
+.product-card h3 {
+    color: #ffd700;
+}
+
+.product-card button {
+    background: linear-gradient(90deg, #ffd700, #ff9f43);
+    color: #260b30;
+    padding: 13px 25px;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 12px;
+}
+
+.product-card button:hover {
+    transform: scale(1.05);
+}
+</style>
+
+<script>
+function buyNow(productName, price, emoji) {
+
+    // Store WhatsApp number with country code
+    const whatsappNumber = "917983199902";
+
+    // Create a pre-filled order message
+    const message =
+`💎 *AKANKSHA COSMETICS — VIP STORE* 💎
+
+Hello Ankit Bhai! 👋
+
+🛍️ *I want to order this product:*
+
+${emoji} *Product:* ${productName}
+💰 *Price:* ₹${price}
+
+📦 *Please confirm availability.*
+🚚 Please share delivery details.
+
+🙏 Thank you!
+❤️ Akanksha Cosmetics VIP Store`;
+
+    // Encode message for WhatsApp
+    const encodedMessage = encodeURIComponent(message);
+
+    // Open WhatsApp with the order message
+    const whatsappURL =
+        `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+    window.open(whatsappURL, "_blank");
+}
+</script>
+<!-- ==================================================
+ STEP 21: AKANKSHA COSMETICS VIP PREMIUM PRODUCTS
+ Is section ko apne existing HTML ke <body> ke andar
+ Step 30 ke code ke neeche add karein.
+================================================== -->
+
+<section id="step21Store">
+  <div class="vip21-heading">
+    <span class="vip21-tag">✦ VIP BEAUTY COLLECTION ✦</span>
+    <h2>Akanksha <span>Cosmetics</span></h2>
+    <p>Premium Beauty • Luxury Style • Your Beauty, Your Choice</p>
+  </div>
+
+  <div class="vip21-toolbar">
+    <input id="vip21Search" type="search"
+      placeholder="🔍 Search lipstick, perfume, jewellery...">
+
+    <select id="vip21Category">
+      <option value="All">All Categories</option>
+      <option value="Makeup">Makeup</option>
+      <option value="Skincare">Skincare</option>
+      <option value="Perfume">Perfume</option>
+      <option value="Jewellery">Jewellery</option>
+      <option value="Accessories">Accessories</option>
+      <option value="Bangles">Bangles</option>
+      <option value="Bags">Handbags</option>
+    </select>
+
+    <button type="button" class="vip21-cart-btn"
+      onclick="vip21ShowCart()">
+      🛒 Cart (<span id="vip21CartCount">0</span>)
+    </button>
+  </div>
+
+  <p id="vip21Status" class="vip21-status">
+    Loading premium products...
+  </p>
+
+  <div id="vip21ProductGrid" class="vip21-grid"></div>
+
+  <!-- Shopping cart popup -->
+  <div id="vip21CartModal" class="vip21-modal" hidden>
+    <div class="vip21-modal-box">
+      <button class="vip21-close" onclick="vip21CloseCart()">✕</button>
+      <h2>🛍️ Your Shopping Cart</h2>
+      <div id="vip21CartItems"></div>
+      <h3 id="vip21CartTotal">Total: ₹0</h3>
+      <button class="vip21-buy" onclick="vip21Checkout()">
+        Proceed to Buy
+      </button>
+      <button class="vip21-secondary" onclick="vip21CloseCart()">
+        Continue Shopping
+      </button>
+    </div>
+  </div>
+</section>
+
+<style>
+#step21Store {
+  --pink: #e83e8c;
+  --rose: #b76e79;
+  --cream: #fff7f9;
+  font-family: Arial, sans-serif;
+  color: #39232e;
+  background: linear-gradient(135deg,#fff8fb,#fff0f5,#fffaf2);
+  padding: 30px 4%;
+  border-radius: 18px;
+  margin: 20px 0;
+}
+#step21Store * { box-sizing: border-box; }
+#step21Store .vip21-heading {
+  text-align: center;
+  padding: 18px 0 28px;
+}
+#step21Store .vip21-tag {
+  display: inline-block;
+  background: #f9e1e9;
+  color: #a52d65;
+  border-radius: 30px;
+  padding: 8px 16px;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+#step21Store h2 {
+  font-size: clamp(26px,4vw,42px);
+  margin: 15px 0 8px;
+}
+#step21Store .vip21-heading h2 span {
+  color: var(--pink);
+}
+#step21Store .vip21-heading p {
+  color: #876b79;
+  line-height: 1.6;
+}
+#step21Store .vip21-toolbar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 12px 0 24px;
+}
+#step21Store input,
+#step21Store select {
+  min-width: 0;
+  flex: 1 1 220px;
+  padding: 13px;
+  border: 1px solid #edc8d8;
+  border-radius: 12px;
+  background: white;
+  font-size: 14px;
+}
+#step21Store button {
+  cursor: pointer;
+  font-weight: bold;
+  border: 0;
+  transition: .25s;
+}
+#step21Store button:hover { transform: translateY(-2px); }
+#step21Store .vip21-cart-btn,
+#step21Store .vip21-buy {
+  color: white;
+  background: linear-gradient(135deg,#e83e8c,#b76e79);
+  border-radius: 12px;
+  padding: 13px 18px;
+}
+#step21Store .vip21-status {
+  text-align: center;
+  color: #98627b;
+  margin: 14px 0;
+}
+#step21Store .vip21-grid {
+  display: grid;
+  grid-template-columns: repeat(4,minmax(0,1fr));
+  gap: 18px;
+}
+#step21Store .vip21-card {
+  min-width: 0;
+  overflow: hidden;
+  background: white;
+  border: 1px solid #f3dbe5;
+  border-radius: 16px;
+  box-shadow: 0 7px 22px #8c466410;
+  transition: transform .3s, box-shadow .3s;
+}
+#step21Store .vip21-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 28px #8c466425;
+}
+#step21Store .vip21-image-wrap {
+  position: relative;
+  overflow: hidden;
+  background: #fcecf2;
+}
+#step21Store .vip21-image {
+  display: block;
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  transition: transform .4s;
+}
+#step21Store .vip21-card:hover .vip21-image {
+  transform: scale(1.07);
+}
+#step21Store .vip21-label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: white;
+  background: #b76e79;
+  padding: 6px 9px;
+  border-radius: 20px;
+  font-size: 11px;
+}
+#step21Store .vip21-info { padding: 14px; }
+#step21Store .vip21-info h3 {
+  font-size: 16px;
+  margin: 0 0 8px;
+  min-height: 38px;
+}
+#step21Store .vip21-category {
+  color: #9b7889;
+  font-size: 12px;
+}
+#step21Store .vip21-price {
+  margin: 12px 0;
+  color: #c32f72;
+  font-size: 20px;
+  font-weight: bold;
+}
+#step21Store .vip21-price del {
+  font-size: 12px;
+  color: #9e8a95;
+  font-weight: normal;
+  margin-left: 5px;
+}
+#step21Store .vip21-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+#step21Store .vip21-actions button {
+  padding: 10px 5px;
+  border-radius: 9px;
+  font-size: 12px;
+}
+#step21Store .vip21-add {
+  background: #fbe6ef;
+  color: #a62e65;
+}
+#step21Store .vip21-now {
+  color: white;
+  background: linear-gradient(135deg,#e83e8c,#b76e79);
+}
+#step21Store .vip21-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  padding: 18px;
+  background: #24121dcc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#step21Store .vip21-modal[hidden] { display: none; }
+#step21Store .vip21-modal-box {
+  background: white;
+  width: min(500px,100%);
+  max-height: 85vh;
+  overflow: auto;
+  padding: 24px;
+  border-radius: 18px;
+  position: relative;
+}
+#step21Store .vip21-modal-box h2 { font-size: 23px; }
+#step21Store .vip21-close {
+  float: right;
+  background: #fbe6ef;
+  border-radius: 50%;
+  padding: 9px 12px;
+}
+#step21Store .vip21-cart-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f2dce6;
+}
+#step21Store .vip21-qty button {
+  padding: 5px 9px;
+  border-radius: 6px;
+  background: #fbe6ef;
+}
+#step21Store .vip21-secondary {
+  background: #f7eaf0;
+  color: #8b315c;
+  padding: 12px;
+  border-radius: 10px;
+  width: 100%;
+  margin-top: 10px;
+}
+#step21Store .vip21-buy { width: 100%; margin-top: 10px; }
+#step21Store .vip21-empty { text-align: center; padding: 20px; }
+
+@media(max-width:1000px) {
+  #step21Store .vip21-grid {
+    grid-template-columns: repeat(3,minmax(0,1fr));
+  }
+}
+@media(max-width:650px) {
+  #step21Store { padding: 20px 12px; }
+  #step21Store .vip21-grid {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 10px;
+  }
+  #step21Store .vip21-image { height: 155px; }
+  #step21Store .vip21-info { padding: 10px; }
+  #step21Store .vip21-info h3 { font-size: 14px; }
+  #step21Store .vip21-price { font-size: 17px; }
+  #step21Store .vip21-actions { grid-template-columns: 1fr; }
+}
+@media(max-width:360px) {
+  #step21Store .vip21-grid { grid-template-columns: 1fr; }
+  #step21Store .vip21-image { height: 230px; }
+}
+</style>
+
+<script>
+(() => {
+  // 30 sample products. Prices are editable demo prices.
+  const products = [
+    {id:1,name:"Rose Pink Lipstick",cat:"Makeup",price:169,old:299,img:"photo-1586495777744-4413f21062fa"},
+    {id:6,name:"Makeup Brush Set",cat:"Makeup",price:299,old:499,img:"photo-1522335789203-aabd1fc54bc9"},
+    {id:7,name:"Nail Polish Set",cat:"Makeup",price:129,old:199,img:"photo-1604654894610-df63bc536371"},
+    {id:8,name:"Premium Mascara",cat:"Makeup",price:199,old:279,img:"photo-1512496015851-a90fb38ba796"},
+    {id:9,name:"Blush & Highlighter",cat:"Makeup",price:299,old:399,img:"photo-1596462502278-27bfdc403348"},
+    {id:10,name:"Makeup Gift Kit",cat:"Makeup",price:499,old:799,img:"photo-1522335789203-aabd1fc54bc9"},
+    {id:13,name:"Aloe Vera Gel",cat:"Skincare",price:129,old:199,img:"photo-1608248543803-ba4f8c70ae0b"},
+    {id:14,name:"Daily Sunscreen",cat:"Skincare",price:299,old:399,img:"photo-1556229010-6c3f2c9ca5f8"},
+    {id:15,name:"Hydrating Face Serum",cat:"Skincare",price:399,old:549,img:"photo-1608248543803-ba4f8c70ae0b"},
+    {id:16,name:"Luxury Rose Perfume",cat:"Perfume",price:499,old:699,img:"photo-1541643600914-78b084683601"},
+    {id:17,name:"Classic Fragrance",cat:"Perfume",price:349,old:499,img:"photo-1594035910387-fea47794261f"},
+    {id:18,name:"Golden Jhumka",cat:"Jewellery",price:199,old:249,img:"photo-1535632066927-ab7c9ab60908"},
+    {id:19,name:"Pearl Earrings",cat:"Jewellery",price:119,old:215,img:"photo-1617038220319-276d3cfab638"},
+    {id:20,name:"Elegant Necklace Set",cat:"Jewellery",price:179,old:299,img:"photo-1599643478518-a784e5dc4c8f"},
+    {id:21,name:"Traditional Bangles",cat:"Bangles",price:129,old:259,img:"photo-1611652022419-a9419f74343d"},
+    {id:24,name:"Ladies Handbag",cat:"Bags",price:499,old:799,img:"photo-1584917865442-de89df76afd3"},
+    {id:25,name:"Pink Shoulder Bag",cat:"Bags",price:599,old:999,img:"photo-1566150905458-1bf1fc113f0d"},
+    {id:26,name:"Mini Party Clutch",cat:"Bags",price:299,old:599,img:"photo-1591561954557-26941169b49e"},
+    {id:27,name:"Makeup Pouch",cat:"Accessories",price:149,old:249,img:"photo-1596462502278-27bfdc403348"},
+    {id:29,name:"Fashion Hair Clips",cat:"Accessories",price:99,old:149,img:"photo-1522335789203-aabd1fc54bc9"},
+    {id:30,name:"Premium Beauty Combo",cat:"Accessories",price:499,old:799,img:"photo-1596462502278-27bfdc403348"}
+  ];
+
+  const grid = document.getElementById("vip21ProductGrid");
+  if (!grid) return;
+
+  const search = document.getElementById("vip21Search");
+  const category = document.getElementById("vip21Category");
+  const status = document.getElementById("vip21Status");
+  const cartCount = document.getElementById("vip21CartCount");
+  const cartModal = document.getElementById("vip21CartModal");
+  const cartItems = document.getElementById("vip21CartItems");
+  const cartTotal = document.getElementById("vip21CartTotal");
+
+  let cart = [];
+
+  function money(value) {
+    return "₹" + value.toLocaleString("en-IN");
+  }
+
+  function imageURL(id) {
+    return "https://images.unsplash.com/" + id +
+      "?auto=format&fit=crop&w=600&q=80";
+  }
+
+  function renderProducts() {
+    const q = search.value.trim().toLowerCase();
+    const cat = category.value;
+
+    const filtered = products.filter(p =>
+      p.name.toLowerCase().includes(q) &&
+      (cat === "All" || p.cat === cat)
+    );
+
+    status.textContent = filtered.length
+      ? filtered.length + " premium products found"
+      : "No products found. Try another search.";
+
+    grid.innerHTML = filtered.map(p => `
+      <article class="vip21-card">
+        <div class="vip21-image-wrap">
+          <span class="vip21-label">VIP COLLECTION</span>
+          <img class="vip21-image"
+            src="${imageURL(p.img)}"
+            alt="${p.name}"
+            loading="lazy"
+            onerror="this.onerror=null;this.src='https://placehold.co/600x700/fff0f5/b76e79?text=Akanksha+Cosmetics'">
+        </div>
+        <div class="vip21-info">
+          <span class="vip21-category">${p.cat}</span>
+          <h3>${p.name}</h3>
+          <div class="vip21-price">
+            ${money(p.price)} <del>${money(p.old)}</del>
+          </div>
+          <div class="vip21-actions">
+            <button class="vip21-add" data-add="${p.id}">
+              🛒 Add to Cart
+            </button>
+            <button class="vip21-now" data-buy="${p.id}">
+              ⚡ Buy Now
+            </button>
+          </div>
+        </div>
+      </article>
+    `).join("");
+  }
+
+  function addToCart(id) {
+    const product = products.find(p => p.id === id);
+    if (!product) return;
+
+    const existing = cart.find(item => item.id === id);
+    if (existing) existing.qty++;
+    else cart.push({...product, qty:1});
+
+    updateCart();
+    status.textContent = product.name + " added to cart!";
+  }
+
+  function updateCart() {
+    cartCount.textContent = cart.reduce((sum,item) => sum + item.qty, 0);
+
+    if (!cart.length) {
+      cartItems.innerHTML = '<p class="vip21-empty">Your cart is empty 🛍️</p>';
+      cartTotal.textContent = "Total: ₹0";
+      return;
+    }
+
+    cartItems.innerHTML = cart.map(item => `
+      <div class="vip21-cart-row">
+        <div>
+          <strong>${item.name}</strong><br>
+          ${money(item.price)} × ${item.qty}
+        </div>
+        <div class="vip21-qty">
+          <button data-minus="${item.id}">−</button>
+          <button data-plus="${item.id}">+</button>
+          <button data-remove="${item.id}" aria-label="Remove item">✕</button>
+        </div>
+      </div>
+    `).join("");
+
+    const total = cart.reduce((sum,item) => sum + item.price * item.qty, 0);
+    cartTotal.textContent = "Total: " + money(total);
+  }
+
+  function showCart() {
+    updateCart();
+    cartModal.hidden = false;
+  }
+
+  function closeCart() {
+    cartModal.hidden = true;
+  }
+
+  function buyNow(id) {
+    addToCart(id);
+    showCart();
+  }
+
+  function checkout() {
+    if (!cart.length) {
+      alert("Please add a product to your cart first.");
+      return;
+    }
+
+    const lines = cart.map(item =>
+      `${item.name} x ${item.qty} = ${money(item.price * item.qty)}`
+    );
+    const total = cart.reduce((sum,item) => sum + item.price * item.qty, 0);
+
+    alert(
+      "Order Summary\\n\\n" + lines.join("\\n") +
+      "\\n\\nTotal: " + money(total) +
+      "\\n\\nThis is a demo checkout. Connect a backend or WhatsApp ordering to receive real orders."
+    );
+  }
+
+  grid.addEventListener("click", event => {
+    const add = event.target.closest("[data-add]");
+    const buy = event.target.closest("[data-buy]");
+    if (add) addToCart(Number(add.dataset.add));
+    if (buy) buyNow(Number(buy.dataset.buy));
+  });
+
+  cartItems.addEventListener("click", event => {
+    const btn = event.target.closest("button");
+    if (!btn) return;
+    const id = Number(
+      btn.dataset.minus || btn.dataset.plus || btn.dataset.remove
+    );
+    const item = cart.find(p => p.id === id);
+    if (!item) return;
+
+    if (btn.dataset.plus) item.qty++;
+    if (btn.dataset.minus) item.qty--;
+    if (btn.dataset.remove || item.qty <= 0) {
+      cart = cart.filter(p => p.id !== id);
+    }
+    updateCart();
+  });
+
+  search.addEventListener("input", renderProducts);
+  category.addEventListener("change", renderProducts);
+
+  // Functions are exposed for the HTML buttons.
+  window.vip21ShowCart = showCart;
+  window.vip21CloseCart = closeCart;
+  window.vip21Checkout = checkout;
+
+  renderProducts();
+  updateCart();
+})();
+</script>
+<!-- =====================================================
+      LOGIN MODAL 
+===================================================== -->
+
+<div
+    class="modal"
+    id="loginModal">
+
+    <div class="modalBox">
+
+        <button
+            class="close"
+            onclick="closeModal('loginModal')">
+
+            ×
+
+        </button>
+
+        <h2>
+            👑 VIP LOGIN
+        </h2>
+
+        <p style="color:#888;margin-bottom:20px;">
+            Welcome to Akanksha Cosmetics
+        </p>
+
+
+        <input
+            id="loginPhone"
+            type="tel"
+            maxlength="10"
+            placeholder="Enter Mobile Number">
+
+
+        <button
+            class="actionBtn"
+            onclick="loginDemo()">
+
+            ✦ SEND OTP ✦
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ==========================================
+ AKANKSHA COSMETICS VIP ORDER SYSTEM
+ WhatsApp + Order Tracking + Payment UI
+=========================================== -->
+
+<section id="akc-vip-system">
+
+<style>
+#akc-vip-system {
+    --akc-gold: #ffd700;
+    --akc-pink: #ff4fa3;
+    --akc-purple: #a855f7;
+    --akc-green: #20c96b;
+
+    font-family: Arial, sans-serif;
+    color: white;
+    padding: 22px 12px;
+    background:
+        radial-gradient(ellipse at top, #64145f, transparent 55%),
+        linear-gradient(145deg, #080510, #21072f, #10051c);
+    border: 1px solid #a855f7;
+    border-radius: 22px;
+    overflow: hidden;
+}
+
+#akc-vip-system * {
+    box-sizing: border-box;
+}
+
+#akc-vip-system .akc-wrap {
+    max-width: 1000px;
+    margin: auto;
+}
+
+#akc-vip-system .akc-header {
+    text-align: center;
+    padding: 22px 10px;
+    background: linear-gradient(135deg, #25052f, #641653);
+    border: 1px solid var(--akc-gold);
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+#akc-vip-system .akc-header h2 {
+    color: var(--akc-gold);
+    font-size: clamp(23px, 5vw, 34px);
+    margin: 10px 0;
+}
+
+#akc-vip-system .akc-header p {
+    color: #fbd5ff;
+    font-size: 13px;
+}
+
+#akc-vip-system .akc-crown {
+    font-size: 35px;
+}
+
+#akc-vip-system .akc-badge {
+    display: inline-block;
+    color: var(--akc-gold);
+    border: 1px solid var(--akc-gold);
+    border-radius: 25px;
+    padding: 8px 15px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    margin-top: 12px;
+}
+
+#akc-vip-system .akc-panel {
+    padding: 18px;
+    margin-bottom: 18px;
+    background: linear-gradient(145deg, #291039, #15081f);
+    border: 1px solid #a855f766;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px #0004;
+}
+
+#akc-vip-system .akc-panel h3 {
+    color: var(--akc-gold);
+    font-size: 19px;
+    margin: 0 0 15px;
+}
+
+#akc-vip-system .akc-dashboard {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+#akc-vip-system .akc-stat {
+    text-align: center;
+    padding: 16px 8px;
+    border-radius: 14px;
+    background: linear-gradient(145deg, #42144f, #1b0a28);
+    border: 1px solid #a855f777;
+}
+
+#akc-vip-system .akc-stat .akc-icon {
+    font-size: 25px;
+}
+
+#akc-vip-system .akc-stat strong {
+    display: block;
+    color: var(--akc-gold);
+    font-size: 23px;
+    margin: 8px 0;
+}
+
+#akc-vip-system .akc-stat small {
+    color: #e1cce9;
+    font-size: 12px;
+}
+
+#akc-vip-system label {
+    display: block;
+    margin: 13px 0 7px;
+    color: #f7e6ff;
+    font-size: 13px;
+}
+
+#akc-vip-system input,
+#akc-vip-system select,
+#akc-vip-system textarea {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    padding: 13px;
+    background: #10071a;
+    border: 1px solid #8f4bb7;
+    border-radius: 11px;
+    color: white;
+    font-size: 14px;
+    outline: none;
+}
+
+#akc-vip-system input:focus,
+#akc-vip-system select:focus,
+#akc-vip-system textarea:focus {
+    border-color: var(--akc-gold);
+}
+
+#akc-vip-system select option {
+    background: #180923;
+    color: white;
+}
+
+#akc-vip-system textarea {
+    min-height: 75px;
+    resize: vertical;
+}
+
+#akc-vip-system .akc-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+#akc-vip-system .akc-btn {
+    width: 100%;
+    padding: 13px 10px;
+    border: none;
+    border-radius: 25px;
+    margin-top: 11px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .2s;
+}
+
+#akc-vip-system .akc-btn:hover {
+    filter: brightness(1.1);
+}
+
+#akc-vip-system .akc-gold-btn {
+    color: #210b2b;
+    background: linear-gradient(90deg, #ffd700, #ffb347);
+}
+
+#akc-vip-system .akc-pink-btn {
+    color: white;
+    background: linear-gradient(90deg, #a855f7, #ff4fa3);
+}
+
+#akc-vip-system .akc-green-btn {
+    color: white;
+    background: linear-gradient(90deg, #20c96b, #078b4a);
+}
+
+#akc-vip-system .akc-blue-btn {
+    color: white;
+    background: linear-gradient(90deg, #287bff, #895cf6);
+}
+
+#akc-vip-system .akc-note {
+    color: #d8c3e4;
+    font-size: 12px;
+    line-height: 1.8;
+    margin-top: 12px;
+}
+
+#akc-vip-system .akc-summary {
+    margin-top: 16px;
+    padding: 15px;
+    background: #10071b;
+    border: 1px solid var(--akc-gold);
+    border-radius: 14px;
+}
+
+#akc-vip-system .akc-summary strong {
+    color: var(--akc-gold);
+}
+
+#akc-vip-system .akc-order-card {
+    margin-top: 12px;
+    padding: 15px;
+    background: #15091f;
+    border: 1px solid #70468a;
+    border-radius: 14px;
+}
+
+#akc-vip-system .akc-order-card h4 {
+    color: var(--akc-gold);
+    margin: 0 0 10px;
+    overflow-wrap: anywhere;
+}
+
+#akc-vip-system .akc-order-card p {
+    font-size: 12px;
+    line-height: 1.9;
+    color: #efdef7;
+    overflow-wrap: anywhere;
+}
+
+#akc-vip-system .akc-order-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 7px;
+}
+
+#akc-vip-system .akc-status {
+    display: inline-block;
+    background: #4a3159;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    margin: 5px 0;
+}
+
+#akc-vip-system .akc-timeline {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 15px;
+}
+
+#akc-vip-system .akc-step {
+    padding: 12px 5px;
+    text-align: center;
+    background: #190d23;
+    border: 1px solid #ffffff20;
+    border-radius: 12px;
+    color: #a995b3;
+    font-size: 11px;
+}
+
+#akc-vip-system .akc-step span {
+    display: block;
+    font-size: 22px;
+    margin-bottom: 6px;
+}
+
+#akc-vip-system .akc-step.akc-done {
+    color: #9bffc0;
+    border-color: #20c96b;
+    background: #103020;
+}
+
+#akc-vip-system .akc-step.akc-current {
+    color: var(--akc-gold);
+    border-color: var(--akc-gold);
+    background: #342710;
+}
+
+#akc-vip-system .akc-empty {
+    color: #d6c1e3;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+#akc-vip-system .akc-footer {
+    text-align: center;
+    padding: 18px 5px 5px;
+    color: #dec7eb;
+    font-size: 12px;
+    line-height: 1.9;
+}
+
+#akc-vip-system .akc-footer strong {
+    color: var(--akc-gold);
+}
+
+@media (min-width: 650px) {
+    #akc-vip-system .akc-dashboard {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    #akc-vip-system .akc-row {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    #akc-vip-system .akc-order-actions {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    #akc-vip-system .akc-timeline {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+</style>
+
+<div class="akc-wrap">
+
+    <!-- VIP HEADER -->
+    <div class="akc-header">
+        <div class="akc-crown">💎👑💄</div>
+
+        <h2>Akanksha Cosmetics</h2>
+
+        <p> Online Orders • Payment • Tracking</p>
+
+        <div class="akc-badge">
+            ✨  PREMIUM CUSTOMER ZONE ✨
+        </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div class="akc-panel">
+        <h3>👑 VIP Dashboard</h3>
+
+        <div class="akc-dashboard">
+
+            <div class="akc-stat">
+                <div class="akc-icon">📦</div>
+                <strong id="akcTotal">89</strong>
+                <small>Total Orders</small>
+            </div>
+
+            <div class="akc-stat">
+                <div class="akc-icon">⏳</div>
+                <strong id="akcPending">16</strong>
+                <small>Pending</small>
+            </div>
+
+            <div class="akc-stat">
+                <div class="akc-icon">🚚</div>
+                <strong id="akcShipped">54</strong>
+                <small>Shipped</small>
+            </div>
+
+            <div class="akc-stat">
+                <div class="akc-icon">✅</div>
+                <strong id="akcDelivered">19</strong>
+                <small>Delivered</small>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- CREATE ORDER -->
+    <div class="akc-panel">
+        <h3>📦 Create New Order</h3>
+
+        <form id="akcOrderForm">
+
+            <label for="akcCustomer">👤 Customer Name</label>
+            <input id="akcCustomer"
+                   maxlength="80"
+                   required
+                   placeholder="Enter your name">
+
+            <div class="akc-row">
+
+                <div>
+                    <label for="akcPhone">📱 Mobile Number</label>
+                    <input id="akcPhone"
+                           type="tel"
+                           maxlength="16"
+                           required
+                           placeholder="Enter mobile number">
+                </div>
+
+                <div>
+                    <label for="akcProduct">💄 Product Name</label>
+                    <input id="akcProduct"
+                           maxlength="150"
+                           required
+                           placeholder="Enter product name">
+                </div>
+
+            </div>
+
+            <div class="akc-row">
+
+                <div>
+                    <label for="akcQuantity">🔢 Quantity</label>
+                    <input id="akcQuantity"
+                           type="number"
+                           min="1"
+                           max="99"
+                           value="1"
+                           required>
+                </div>
+
+                <div>
+                    <label for="akcPrice">💰 Price Per Item (₹)</label>
+                    <input id="akcPrice"
+                           type="number"
+                           min="1"
+                           max="1000000"
+                           required
+                           placeholder="Enter price">
+                </div>
+
+            </div>
+
+            <label for="akcAddress">🏠 Delivery Address</label>
+            <textarea id="akcAddress"
+                      maxlength="500"
+                      required
+                      placeholder="Enter delivery address"></textarea>
+
+            <div class="akc-summary">
+                <strong>🧾 Order Total</strong>
+                <h2 style="color:#ffd700;margin-top:10px">
+                    ₹<span id="akcTotalAmount">0</span>
+                </h2>
+            </div>
+
+            <button class="akc-btn akc-gold-btn" type="submit">
+                ✅ Create Order
+            </button>
+
+        </form>
+    </div>
+
+    <!-- TRACK ORDER -->
+    <div class="akc-panel">
+        <h3>🚚 Track My Order</h3>
+
+        <label for="akcTrackInput">🆔 Order ID</label>
+        <input id="akcTrackInput"
+               maxlength="60"
+               placeholder="Enter your Order ID">
+
+        <button class="akc-btn akc-pink-btn"
+                id="akcTrackButton">
+            🔍 Track Order
+        </button>
+
+        <div id="akcTrackingResult" aria-live="polite"></div>
+    </div>
+
+    <!-- PAYMENT -->
+    <div class="akc-panel">
+        <h3>💳 VIP Online Payment</h3>
+
+        <label for="akcPaymentId">🧾 Order ID</label>
+        <input id="akcPaymentId"
+               maxlength="60"
+               placeholder="Enter Order ID">
+
+        <div class="akc-summary">
+            <strong>💰 Amount to Pay</strong>
+            <h2 style="color:#ffd700;margin-top:10px">
+                ₹<span id="akcPayAmount">0</span>
+            </h2>
+        </div>
+
+        <button class="akc-btn akc-blue-btn"
+                id="akcPayButton">
+            🔐 Pay Online Securely
+        </button>
+
+        <button class="akc-btn akc-gold-btn"
+                id="akcCODButton">
+            📦 Cash on Delivery
+        </button>
+
+        <p class="akc-note">
+            🔒 Online payment requires a verified payment gateway
+            and secure backend. This demo does not process payments
+            or collect card, UPI PIN or banking credentials.
+        </p>
+    </div>
+
+    <!-- MY ORDERS -->
+    <div class="akc-panel">
+        <h3>📋 My Orders</h3>
+
+        <div id="akcOrdersList">
+            <p class="akc-empty">
+                No orders yet. Create your first order above. ❤️
+            </p>
+        </div>
+    </div>
+
+    <!-- WHATSAPP -->
+    <div class="akc-panel">
+        <h3>💬 WhatsApp Order & Support</h3>
+
+        <p class="akc-note">
+            Send your order details to Akanksha Cosmetics
+            through WhatsApp.
+        </p>
+
+        <button class="akc-btn akc-green-btn"
+                id="akcWhatsAppButton">
+            💬 Contact Ankit Bhai on WhatsApp
+        </button>
+    </div>
+
+    <div class="akc-footer">
+        <strong>💎 Akanksha Cosmetics VIP Store 💎</strong><br>
+        Beauty • Fashion • Style<br>
+        Made with ❤️ for our customers
+    </div>
+
+</div>
+
+<script>
+(function () {
+    "use strict";
+
+    /*
+     * IMPORTANT:
+     * Demo data is saved only in this browser.
+     * Real shared orders require a backend/database.
+     */
+
+    const root = document.getElementById("akc-vip-system");
+
+    if (!root || root.dataset.initialized === "true") return;
+    root.dataset.initialized = "true";
+
+    const SHOP_WHATSAPP = "917983199902";
+    const STORAGE_KEY = "akc_vip_orders_demo_v1";
+
+    const stages = [
+        { name: "Pending", icon: "📝" },
+        { name: "Confirmed", icon: "✅" },
+        { name: "Shipped", icon: "🚚" },
+        { name: "Delivered", icon: "🏠" }
+    ];
+
+    let orders = loadOrders();
+
+    function $(id) {
+        return root.querySelector("#" + id);
+    }
+
+    function money(value) {
+        return Number(value).toLocaleString("en-IN");
+    }
+
+    function loadOrders() {
+        try {
+            const saved = JSON.parse(
+                localStorage.getItem(STORAGE_KEY) || "[]"
+            );
+
+            if (!Array.isArray(saved)) return [];
+
+            return saved.filter(order =>
+                order &&
+                typeof order.id === "string" &&
+                typeof order.customer === "string" &&
+                typeof order.product === "string" &&
+                Number.isFinite(order.total) &&
+                stages.some(s => s.name === order.status) &&
+                ["Unpaid", "Paid"].includes(order.paymentStatus)
+            );
+        } catch (error) {
+            return [];
+        }
+    }
+
+    function saveOrders() {
+        try {
+            localStorage.setItem(
+                STORAGE_KEY,
+                JSON.stringify(orders)
+            );
+            return true;
+        } catch (error) {
+            alert(
+                "Orders could not be saved. Please check browser storage."
+            );
+            return false;
+        }
+    }
+
+    function getOrder(id) {
+        return orders.find(order => order.id === id);
+    }
+
+    function createOrderId() {
+        return "AKC-" +
+            Date.now().toString(36).toUpperCase() +
+            "-" +
+            Math.random().toString(36).slice(2, 6).toUpperCase();
+    }
+
+    /* PRICE PREVIEW */
+    function updateTotal() {
+        const quantity =
+            Number($("akcQuantity").value) || 0;
+
+        const price =
+            Number($("akcPrice").value) || 0;
+
+        $("akcTotalAmount").textContent =
+            money(Math.max(0, quantity * price));
+    }
+
+    $("akcQuantity").addEventListener("input", updateTotal);
+    $("akcPrice").addEventListener("input", updateTotal);
+
+    /* DASHBOARD */
+    function renderDashboard() {
+        $("akcTotal").textContent = orders.length;
+
+        $("akcPending").textContent =
+            orders.filter(o => o.status === "Pending").length;
+
+        $("akcShipped").textContent =
+            orders.filter(o => o.status === "Shipped").length;
+
+        $("akcDelivered").textContent =
+            orders.filter(o => o.status === "Delivered").length;
+    }
+
+    /* ORDER LIST */
+    function renderOrders() {
+        const list = $("akcOrdersList");
+        list.replaceChildren();
+
+        if (!orders.length) {
+            const p = document.createElement("p");
+            p.className = "akc-empty";
+            p.textContent = "No orders yet. Create your first order. ❤️";
+            list.appendChild(p);
+            return;
+        }
+
+        orders.forEach(order => {
+            const card = document.createElement("div");
+            card.className = "akc-order-card";
+
+            const title = document.createElement("h4");
+            title.textContent = "📦 " + order.id;
+
+            const details = document.createElement("p");
+            details.textContent =
+                "Product: " + order.product +
+                " | Quantity: " + order.quantity +
+                " | Total: ₹" + money(order.total) +
+                " | Status: " + order.status +
+                " | Payment: " + order.paymentStatus;
+
+            const actions = document.createElement("div");
+            actions.className = "akc-order-actions";
+
+            const track = document.createElement("button");
+            track.type = "button";
+            track.className = "akc-btn akc-pink-btn";
+            track.textContent = "🚚 Track Order";
+
+            track.addEventListener("click", function () {
+                $("akcTrackInput").value = order.id;
+                $("akcPaymentId").value = order.id;
+
+                renderTracking(order);
+                updatePaymentAmount();
+
+                $("akcTrackingResult").scrollIntoView({
+                    behavior: "smooth",
+                    block: "nearest"
+                });
+            });
+
+            const whatsapp = document.createElement("button");
+            whatsapp.type = "button";
+            whatsapp.className = "akc-btn akc-green-btn";
+            whatsapp.textContent = "💬 WhatsApp Order";
+
+            whatsapp.addEventListener("click", function () {
+                sendWhatsApp(order);
+            });
+
+            actions.append(track, whatsapp);
+            card.append(title, details, actions);
+            list.appendChild(card);
+        });
+    }
+
+    /* TRACKING */
+    function renderTracking(order) {
+        const result = $("akcTrackingResult");
+        result.replaceChildren();
+
+        const box = document.createElement("div");
+        box.className = "akc-order-card";
+
+        const title = document.createElement("h4");
+        title.textContent = "📦 " + order.id;
+
+        const product = document.createElement("p");
+        product.textContent =
+            order.product + " × " + order.quantity;
+
+        const status = document.createElement("span");
+        status.className = "akc-status";
+        status.textContent =
+            "Order: " + order.status +
+            " | Payment: " + order.paymentStatus;
+
+        const total = document.createElement("p");
+        total.textContent = "Total: ₹" + money(order.total);
+
+        const timeline = document.createElement("div");
+        timeline.className = "akc-timeline";
+
+        const currentIndex = stages.findIndex(
+            stage => stage.name === order.status
+        );
+
+        stages.forEach((stage, index) => {
+            const step = document.createElement("div");
+            step.className = "akc-step";
+
+            if (index < currentIndex) {
+                step.classList.add("akc-done");
+            } else if (index === currentIndex) {
+                step.classList.add("akc-current");
+            }
+
+            const icon = document.createElement("span");
+            icon.textContent = stage.icon;
+
+            const label = document.createElement("div");
+            label.textContent = stage.name;
+
+            step.append(icon, label);
+            timeline.appendChild(step);
+        });
+
+        const note = document.createElement("p");
+        note.className = "akc-note";
+        note.textContent =
+            "Demo tracking only. Actual delivery status must be " +
+            "updated by the shop or connected courier service.";
+
+        box.append(title, product, status, total, timeline, note);
+        result.appendChild(box);
+    }
+
+    function trackOrder() {
+        const id = $("akcTrackInput").value.trim();
+        const order = getOrder(id);
+
+        if (!order) {
+            const result = $("akcTrackingResult");
+            result.replaceChildren();
+
+            const p = document.createElement("p");
+            p.className = "akc-empty";
+            p.textContent =
+                "Order not found in this browser. Please check the Order ID.";
+
+            result.appendChild(p);
+            return;
+        }
+
+        $("akcPaymentId").va
+
+        <!-- 💎 AKANKSHA COSMETICS VIP PREMIUM PRODUCT SECTION -->
+<section id="akc-vip-store">
