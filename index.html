@@ -440,40 +440,1629 @@ footer a { color: var(--gold); margin: 0 7px; }
       <button class="vip-btn" onclick="openLogin()">♙ Login</button>
       <button class="vip-btn" onclick="focusSearch()">⌕ Search</button>
       <button class="vip-btn" onclick="openCart()">
-        🛒 Cart <span class="cart-count" id="cartCount">0</span>
+        🛒 Cart <span class="cart-count" id="cartCount">0</span>  
+
       </button>
     </div>
   </div>
 </header>
 
-<div class="search-area" id="searchArea">
-  <div class="search-box">
-    <input id="searchInput" type="search"
-      placeholder="🔍 Search lipstick, perfume, bangles..."
-      aria-label="Search products">
-    <button class="vip-btn" onclick="searchProducts()">Search</button>
   </div>
 </div>
 
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Akanksha Cosmetics | VIP Beauty</title>
+<style>
+:root{--pink:#ff4f9a;--rose:#f8b4cc;--purple:#5b164f;--gold:#f8d58a;--ink:#271327}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;background:#fff8fc;color:var(--ink)}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px clamp(16px,4vw,54px);background:#fff;box-shadow:0 5px 22px #7d17421a;position:relative;z-index:2}
+.brand{font-weight:900;font-size:clamp(18px,2.5vw,27px);letter-spacing:.2px;color:#8b1458}
+.brand span{color:#d84d8c}
+.badge{font-size:11px;letter-spacing:2px;color:#a05a78;margin-top:4px}
+.top-cta{border:0;border-radius:999px;padding:11px 18px;background:linear-gradient(120deg,#ff80b7,#a53683);color:white;font-weight:800;cursor:pointer;box-shadow:0 7px 18px #d64b8a40}
+.hero{position:relative;overflow:hidden;min-height:440px;height:min(67vw,570px);max-height:570px;margin:16px auto 0;width:calc(100% - 28px);border-radius:28px;background:linear-gradient(120deg,#6d164e,#f35d9b);isolation:isolate;box-shadow:0 18px 45px #771a4c2b;transition:background 1s ease}
+.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;filter:blur(2px);pointer-events:none;z-index:-1}
+.hero::before{width:390px;height:390px;background:#ffc5dc55;top:-180px;left:28%}
+.hero::after{width:360px;height:360px;background:#f8d58a33;bottom:-230px;right:10%}
+.slide-bg{position:absolute;inset:0;z-index:-2;background:linear-gradient(115deg,#641344,#b72c76 50%,#f77cac);transition:opacity .8s}
+.hero[data-slide="1"] .slide-bg{background:linear-gradient(115deg,#3b155e,#9b3c9c 50%,#f7a2c9)}
+.hero[data-slide="2"] .slide-bg{background:linear-gradient(115deg,#76212d,#d34d78 52%,#ffc1cb)}
+.hero[data-slide="3"] .slide-bg{background:linear-gradient(115deg,#43164c,#b33d8a 48%,#f4b3d2)}
+.sparkle{position:absolute;color:#ffe8b6;font-size:24px;opacity:.85;animation:twinkle 2.4s infinite alternate}
+.s1{top:12%;left:48%}.s2{top:26%;right:7%;animation-delay:.7s}.s3{bottom:15%;left:43%;animation-delay:1.1s}
+.hero-copy{position:absolute;left:6%;top:50%;transform:translateY(-50%);width:38%;max-width:440px;color:white;z-index:1}
+.eyebrow{display:inline-block;padding:8px 13px;border:1px solid #ffffff77;border-radius:99px;background:#ffffff16;font-size:11px;font-weight:800;letter-spacing:2px;margin-bottom:16px}
+h1{font-family:Georgia,serif;font-size:clamp(32px,5vw,67px);line-height:1.02;text-shadow:0 4px 16px #330b2c55}
+h1 em{display:block;color:#ffe2a8;font-weight:normal}
+.hero-copy p{font-size:clamp(13px,1.5vw,17px);line-height:1.6;margin:17px 0 22px;color:#fff1f7;max-width:360px}
+.shop-btn{display:inline-flex;align-items:center;gap:12px;padding:14px 23px;border-radius:12px;background:linear-gradient(110deg,#fff0f6,#ffd0e2);color:#721548;text-decoration:none;font-weight:900;box-shadow:0 8px 24px #31062240;transition:transform .2s}
+.shop-btn:hover{transform:translateY(-3px) scale(1.02)}
+.models{position:absolute;right:3%;bottom:0;width:57%;height:94%;display:flex;align-items:flex-end;justify-content:center;gap:clamp(0px,1.2vw,16px);pointer-events:none}
+.model{height:88%;width:31%;max-width:230px;object-fit:cover;object-position:center top;border-radius:48% 48% 10px 10px;border:3px solid #ffe7f1a8;box-shadow:0 8px 35px #30051f55;animation:jump 2.3s ease-in-out infinite;animation-delay:var(--delay);transition:opacity .5s,transform .5s}
+.model:nth-child(2){height:100%;width:34%;z-index:1}
+.model:nth-child(3){height:82%}
+.hero.changing .model{opacity:.2;transform:translateY(25px) scale(.96)}
+.dots{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);display:flex;gap:9px;z-index:2}
+.dot{width:9px;height:9px;border:0;border-radius:99px;background:#ffffff80;cursor:pointer;transition:all .25s}
+.dot.active{width:27px;background:#ffe7b3}
+section.categories{padding:32px clamp(16px,4vw,54px) 42px}
+.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px}
+.section-head h2{font-size:clamp(22px,3vw,32px)}
+.section-head a{color:#c02d79;font-weight:800;text-decoration:none;white-space:nowrap}
+.category-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.category{background:#fff;border:1px solid #f5dce8;border-radius:20px;padding:18px 10px;text-align:center;box-shadow:0 8px 25px #7d17420b}
+.category .icon{width:78px;height:78px;margin:0 auto 12px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#ffe4ef,#fff5f9);font-size:38px;border:2px solid #f6c8dc}
+.category h3{font-size:15px}
+.category p{font-size:12px;color:#91677c;margin-top:5px}
+footer{text-align:center;padding:20px;background:#3b1231;color:#ffe7f2;font-size:13px}
+@keyframes jump{0%,100%{transform:translateY(0)}45%{transform:translateY(-13px)}60%{transform:translateY(-8px)}}
+@keyframes twinkle{from{transform:scale(.8) rotate(-10deg);opacity:.45}to{transform:scale(1.25) rotate(12deg);opacity:1}}
+@media(max-width:700px){
+ .topbar{padding:13px 15px}.top-cta{padding:10px 13px;font-size:12px}
+ .hero{height:570px;min-height:570px;width:calc(100% - 18px);margin-top:9px;border-radius:22px}
+ .hero-copy{left:7%;top:8%;transform:none;width:86%;max-width:none;text-align:center}
+ .eyebrow{margin-bottom:10px}h1{font-size:clamp(34px,9vw,50px)}
+ .hero-copy p{margin:10px auto 14px;max-width:340px}
+ .shop-btn{padding:11px 18px}
+ .models{width:100%;height:51%;right:0;gap:5px}
+ .model{width:29%;height:86%;border-width:2px}
+ .model:nth-child(2){width:32%;height:100%}
+ .model:nth-child(3){height:80%}
+ .dots{bottom:12px}
+ .category-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+ .category{padding:15px 8px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div>
+    <div class="brand">Akanksha <span>Cosmetics</span></div>
+    <div class="badge">VIP BEAUTY COLLECTION</div>
+  </div>
+  <button class="top-cta" onclick="shopNow()">Ankit</button>
+</header>
+
 <main>
-<section class="hero" id="home">
-  <div class="hero-content">
-    <div class="eyebrow"><H2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;💄✦ Yakubpur • Auraiya • (UP.79) ✦</H2></div>
-    <h1>&nbsp;&nbsp;&nbsp;&nbsp;Akanksha Cosmetics<br>&nbsp;&nbsp;&nbsp;&nbsp;CEO. Ankit Gauatam<span></span> </h1>
-    <p><h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;💄आपकी खूबसूरती, हमारा विश्वास ❤️
-Akanksha Cosmetics Shop</h3>
-<h3>&nbsp;&nbsp;&nbsp;✨Premium • Cosmetics • Jewellery • Handbags
-            • Beauty Products💕</h3>
-      </p>
-    <div class="hero-actions">
-      <a href="#products" class="vip-btn gold">✦ Shop Now</a>
-      <a class="vip-btn" href="https://wa.me/917983199902"
-         target="_blank" rel="noopener">💬 WhatsApp Order</a>
-      <a class="vip-btn secondary" href="tel:+917983199902">📞 Call Now</a>
+  <section class="hero" id="hero" data-slide="0" aria-label="Akanksha Cosmetics promotional carousel">
+    <div class="slide-bg" id="slideBg"></div>
+    <span class="sparkle s1">✦</span><span class="sparkle s2">✧</span><span class="sparkle s3">✦</span>
+    <div class="hero-copy">
+      <div class="eyebrow" id="eyebrow">THE VIP BEAUTY EDIT</div>
+      <h1 id="headline">Beauty <em>in Every Look</em></h1>
+      <p id="description">Discover your glow with beauty, fashion and style — curated just for you.</p>
+      <a class="shop-btn" href="#categories" onclick="shopNow(event)">Shop Now <span>→</span></a>
+    </div>
+    <div class="models" id="models">
+      <img class="model" style="--delay:0s" alt="Beauty model one" src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=500&q=85">
+      <img class="model" style="--delay:.25s" alt="Beauty model two" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=85">
+      <img class="model" style="--delay:.5s" alt="Beauty model three" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=500&q=85">
+    </div>
+    <div class="dots" id="dots" aria-label="Choose banner slide"></div>
+  </section>
+
+  
+</main>
+<footer>© <span id="year"></span> Akanksha Cosmetics Shop · Beauty • Fashion • Style</footer>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VIP Premium Beauty Product Grid</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Playfair Display & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .font-luxury {
+      font-family: 'Cinzel', serif;
+    }
+    /* VIP Royal Mesh & Velvet Obsidian Gradient Background */
+    .vip-luxury-bg {
+      background-color: #0d060c;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(212, 175, 55, 0.08) 0px, transparent 50%),
+        radial-gradient(at 100% 15%, rgba(184, 51, 106, 0.15) 0px, transparent 40%),
+        radial-gradient(at 50% 50%, rgba(26, 11, 24, 0.8) 0px, transparent 70%),
+        radial-gradient(at 80% 90%, rgba(212, 175, 55, 0.1) 0px, transparent 50%),
+        linear-gradient(180deg, #090308 0%, #120713 50%, #080308 100%);
+      background-attachment: fixed;
+    }
+
+    /* Glassmorphism Luxury Card */
+    .vip-card {
+      background: linear-gradient(145deg, rgba(35, 18, 33, 0.65) 0%, rgba(18, 8, 17, 0.75) 100%);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(212, 175, 55, 0.18);
+      box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.7), 0 0 1px 1px rgba(212, 175, 55, 0.1) inset;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .vip-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(229, 184, 85, 0.45);
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.9), 0 0 22px rgba(212, 175, 55, 0.2);
+    }
+
+    /* Zoom Effect Container */
+    .zoom-container {
+      overflow: hidden;
+    }
+    .zoom-container img {
+      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+      will-change: transform;
+    }
+    .zoom-container:hover img {
+      transform: scale(1.14);
+    }
+
+    /* Custom Scrollbar for thumbnail tray */
+    .thumb-tray::-webkit-scrollbar {
+      display: none;
+    }
+    .thumb-tray {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Shimmer Gold Effect on Buy Now Button */
+    .btn-vip-buy {
+      background: linear-gradient(135deg, #e5b855 0%, #d48b38 50%, #b8336a 100%);
+      box-shadow: 0 4px 15px rgba(212, 139, 56, 0.35);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .btn-vip-buy:hover {
+      background: linear-gradient(135deg, #f0c96e 0%, #e09642 50%, #c93b76 100%);
+      box-shadow: 0 6px 22px rgba(212, 139, 56, 0.55);
+      transform: scale(1.02);
+    }
+    .btn-vip-buy::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 40%;
+      height: 200%;
+      background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+      transform: rotate(30deg);
+      transition: none;
+    }
+    .btn-vip-buy:hover::after {
+      left: 120%;
+      transition: left 0.75s ease-in-out;
+    }
+
+    /* Toast Notification Animation */
+    #toast {
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+    }
+    #toast.show {
+      transform: translate(-50%, 0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    #toast.hide {
+      transform: translate(-50%, 40px);
+      opacity: 0;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body class="vip-luxury-bg text-gray-200 antialiased min-h-screen py-10 px-3 sm:px-6 lg:px-10">
+
+  <!-- Component Container (No navbar/logo header, pure embeddable section) -->
+  <div class="max-w-7xl mx-auto">
+    
+    <!-- VIP Showcase Header Badge / Sub-heading -->
+    <div class="text-center mb-10 md:mb-14">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-300 text-xs tracking-widest uppercase font-semibold mb-3">
+        <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400"></i>
+        Akanksha · Cosmetics Shop
+        <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400"></i>
+      </div>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-rose-200 to-amber-300 font-luxury tracking-wide">
+        Premium Collection
+      </h2>
+      
+
+    <!-- Product Grid: 1 col on mobile, 2 on tablet, 3 on laptop, 4 on desktop -->
+    <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-7">
+      <!-- 20 Cards dynamically inserted via JavaScript with full hydration -->
     </div>
   </div>
+
+  <!-- Interactive Action Toast Notification -->
+  <div id="toast" class="hide fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-3 px-5 py-3.5 rounded-2xl bg-[#1c0e1b]/95 border border-amber-400/50 shadow-[0_15px_40px_rgba(0,0,0,0.8),0_0_20px_rgba(212,175,55,0.3)] text-amber-100 text-sm font-medium backdrop-blur-md">
+    <div id="toastIcon" class="w-8 h-8 rounded-full bg-amber-500/20 border border-amber-400/40 flex items-center justify-center text-amber-300">
+      <i data-lucide="check" class="w-4 h-4"></i>
+    </div>
+    <span id="toastMsg">Product added successfully!</span>
+  </div>
+
+  <!-- Script: Product Data, Multi-Image Carousel Engine & Interaction Logic -->
+  <script>
+    // 20 Distinct Beauty & Cosmetic Products with 4 themed view variations each (1:1 square)
+    const productsData = [
+      {
+        id: 1,
+        title: "Velvet Satin Nail Polish",
+        category: "Nail Care",
+        rating: 4.8,
+        reviews: "1.4k",
+        currentPrice: 249,
+        originalPrice: 499,
+        discount: "50% OFF",
+        views: [
+          "https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1607779097040-26e80aa78e66?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1599940824399-b87987ceb72a?auto=format&fit=crop&w=700&q=80"
+        ]
+      },
+      {
+        id: 2,
+        title: "VIP 24K Volume Mascara",
+        category: "Eye Luxury",
+        rating: 4.9,
+        reviews: "2.8k",
+        currentPrice: 499,
+        originalPrice: 999,
+        discount: "50% OFF",
+        views: [
+          "https://images.unsplash.com/photo-1591360236480-4ed861025fa1?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=700&q=80"
+        ]
+      },
+      {
+        id: 3,
+        title: "Celestial Highlighter Palette",
+        category: "Glow & Radiance",
+        rating: 4.7,
+        reviews: "950",
+        currentPrice: 699,
+        originalPrice: 1399,
+        discount: "50% OFF",
+        views: [
+          "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1503236823255-94609f598e71?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=700&q=80"
+        ]
+      },
+      {
+        id: 4,
+        title: "Silk Pore-Blurring Makeup Primer",
+        category: "Base Prep",
+        rating: 4.8,
+        reviews: "1.1k",
+        currentPrice: 399,
+        originalPrice: 799,
+        discount: "50% OFF",
+        views: [
+          "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1519735777090-ec97162dc266?auto=format&fit=crop&w=700&q=80"
+        ]
+      },
+      {
+        id: 5,
+        title: "Hydra Bright Pearl Face Wash",
+        category: "Cleanser",
+        rating: 4.6,
+        reviews: "3.2k",
+        currentPrice: 179,
+        originalPrice: 299,
+        discount: "40% OFF",
+        views: [
+           "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1556228852-6d35a585d566?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1608248597359-009772a44bbd?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&w=700&q=80"
+        ]
+      },
+      {
+        id: 6,
+        title: "Pure Aloe Vera Soothing Gel",
+        category: "Moisturizer",
+        rating: 4.9,
+        reviews: "4.5k",
+        currentPrice: 199,
+        originalPrice: 399,
+        discount: "50% OFF",
+        views: [
+          "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1567928815117-646df91fae32?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=700&q=80"
+        ]
+      },
+      {
+        id: 7,
+        title: "Invisible Matte Sunscreen SPF 50",
+        category: "Sun Care",
+        rating: 4.9,
+        reviews: "2.1k",
+        currentPrice: 449,
+        originalPrice: 749,
+        discount: "40% OFF",
+        views: [
+          "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=700&q=80"
+        ]
+      },
+      {
+        id: 8,
+        title: "Golden Honey & Cocoa Body Lotion",
+        category: "Body Care",
+        rating: 4.7,
+        reviews: "1.8k",
+        currentPrice: 329,
+        originalPrice: 599,
+        discount: "45% OFF",
+        views: [
+          "https://images.unsplash.com/photo-1585232351009-aa87416fca90?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1608248597359-009772a44bbd?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1526947425960-945c6e72858f?auto=format&fit=crop&w=700&q=80"
+        ]
+      },
+      {
+        id: 9,
+        title: "Traditional Sindoor & Velvet Bindi Kit",
+        category: "Bridal & Heritage",
+        rating: 4.9,
+        reviews: "3.7k",
+        currentPrice: 199,
+        originalPrice: 399,
+        discount: "50% OFF",
+        views: [
+          "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&w=700&q=80"
+        ]
+      },
+      {
+        id: 10,
+        title: "Pro Rose Gold Brushes & Blender Kit",
+        category: "Beauty Tools",
+        rating: 4.9,
+        reviews: "5.2k",
+        currentPrice: 599,
+        originalPrice: 1499,
+        discount: "60% OFF",
+        views: [
+          "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=700&q=80",
+         "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1583241800698-e8ab01830a07?auto=format&fit=crop&w=700&q=80"
+        ]
+      },
+      {
+        id: 11,
+        title: "Eco Reusable Makeup Remover Pads",
+        category: "Eco Essentials",
+        rating: 4.8,
+        reviews: "820",
+        currentPrice: 289,
+        originalPrice: 499,
+        discount: "42% OFF",
+        views: [
+          "https://images.unsplash.com/photo-1547887537-6158d64c35b3?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1519735777090-ec97162dc266?auto=format&fit=crop&w=700&q=80"
+        ]
+      },
+      {
+        id: 12,
+        title: "Oud Royale Luxury Pocket Perfume",
+        category: "Fine Fragrance",
+        rating: 4.9,
+        reviews: "3.1k",
+        currentPrice: 349,
+        originalPrice: 699,
+        discount: "50% OFF",
+        views: [
+          "https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1547887537-6158d64c35b3?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&w=700&q=80"
+        ]
+      },
+      {
+        id: 13,
+        title: "VIP Matte Velvet Ruby Lipstick",
+        category: "Lip Color",
+        rating: 4.9,
+        reviews: "6.4k",
+        currentPrice: 299,
+        originalPrice: 599,
+        discount: "50% OFF",
+        views: [
+          "https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1627384113743-6bd5a479fffd?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1503236823255-94609f598e71?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1591360236480-4ed861025fa1?auto=format&fit=crop&w=700&q=80"
+        ]
+      },
+      {
+        id: 14,
+        title: "Intense Smudge-proof Kohol Kajal",
+        category: "Eye Luxury",
+        rating: 4.7,
+        reviews: "4.1k",
+        currentPrice: 189,
+        originalPrice: 349,
+        discount: "46% OFF",
+        views: [
+          "https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1591360236480-4ed861025fa1?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=700&q=80"
+        ]
+      },
+      {
+        id: 15,
+        title: "Sunset Sunset Glam Eyeshadow Palette",
+        category: "Eye Studio",
+        rating: 4.8,
+        reviews: "1.9k",
+        currentPrice: 749,
+        originalPrice: 1499,
+        discount: "50% OFF",
+        views: [
+          "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1503236823255-94609f598e71?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1583241800698-e8ab01830a07?auto=format&fit=crop&w=700&q=80"
+        ]
+      },
+      {
+        id: 16,
+        title: "Flawless HD Oil-Control Compact Powder",
+        category: "Finishing Glow",
+        rating: 4.7,
+        reviews: "2.3k",
+        currentPrice: 299,
+        originalPrice: 499,
+        discount: "40% OFF",
+        views: [
+          "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=700&q=80"
+        ]
+      },
+      {
+        id: 17,
+        title: "Crystal Plumping Shimmer Lip Gloss",
+        category: "Lip Lustre",
+        rating: 4.8,
+        reviews: "1.7k",
+        currentPrice: 269,
+        originalPrice: 499,
+        discount: "46% OFF",
+        views: [
+          "https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1627384113743-6bd5a479fffd?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1599940824399-b87987ceb72a?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=700&q=80"
+        ]
+      },
+      {
+        id: 18,
+        title: "24K Gold & Niacinamide Face Serum",
+        category: "Skin Elixir",
+        rating: 5.0,
+        reviews: "3.9k",
+        currentPrice: 649,
+        originalPrice: 1299,
+        discount: "50% OFF",
+        views: [
+          "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=700&q=80"
+        ]
+      },
+      {
+        id: 19,
+        title: "Moroccan Argan Herbal Hair Elixir Oil",
+        category: "Hair Treatment",
+        rating: 4.8,
+        reviews: "2.5k",
+        currentPrice: 499,
+        originalPrice: 899,
+        discount: "45% OFF",
+        views: [
+          "https://images.unsplash.com/photo-1526947425960-945c6e72858f?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1608248597359-009772a44bbd?auto=format&fit=crop&w=700&q=80",
+          
+          "https://images.unsplash.com/photo-1556228722-d0b5d55b0a3c?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&w=700&q=80"
+        ]
+      },
+      {
+        id: 20,
+        title: "Vintage Rose Gold LED Compact Mirror",
+        category: "Luxury Accessories",
+        rating: 4.9,
+        reviews: "1.3k",
+        currentPrice: 399,
+        originalPrice: 799,
+        discount: "50% OFF",
+        views: [
+          "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?auto=format&fit=crop&w=700&q=80",
+          "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=700&q=80"
+        ]
+      }
+    ];
+
+    // Card Renderer Function
+    function renderProductCards() {
+      const container = document.getElementById("productGrid");
+      if (!container) return;
+
+      container.innerHTML = productsData.map((item, index) => {
+        return `
+          <div class="vip-card rounded-2xl p-3.5 sm:p-4 flex flex-col justify-between relative group" data-card-id="${item.id}">
+            
+            <!-- Top Section: Badges & Wishlist Trigger -->
+            <div class="relative w-full">
+              <!-- Discount Badge -->
+              <div class="absolute top-2.5 left-2.5 z-20 flex items-center gap-1 px-2.5 py-1 rounded-full bg-gradient-to-r from-amber-500 to-rose-600 text-white font-bold text-[11px] tracking-wide shadow-lg shadow-black/50 border border-white/20">
+                <i data-lucide="tag" class="w-3 h-3"></i>
+                <span>${item.discount}</span>
+              </div>
+
+              <!-- Wishlist Heart Toggle -->
+              <button 
+                onclick="toggleWishlist(this, '${item.title}')" 
+                aria-label="Add to wishlist"
+                class="absolute top-2.5 right-2.5 z-20 w-8 h-8 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md flex items-center justify-center text-gray-300 hover:text-rose-400 border border-white/10 transition-colors"
+              >
+                <i data-lucide="heart" class="w-4 h-4"></i>
+              </button>
+
+              <!-- Main 1:1 Square Image with Zoom Effect -->
+              <div class="zoom-container w-full aspect-square rounded-xl bg-neutral-900/80 relative overflow-hidden border border-white/5 shadow-inner">
+                <img 
+                  id="main-img-${item.id}"
+                  src="${item.views[0]}" 
+                  alt="${item.title}" 
+                  class="w-full h-full object-cover object-center cursor-zoom-in"
+                  loading="lazy"
+                  onerror="this.src='https://placehold.co/600x600/1e0e1e/d4af37?text=${encodeURIComponent(item.title)}'"
+                />
+                
+                <!-- Left & Right Carousel Nav Arrows over the main image -->
+                <button 
+                  onclick="cycleImage(${item.id}, -1)" 
+                  class="absolute left-1.5 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm border border-white/10"
+                  aria-label="Previous view"
+                >
+                  <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                </button>
+                <button 
+                  onclick="cycleImage(${item.id}, 1)" 
+                  class="absolute right-1.5 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm border border-white/10"
+                  aria-label="Next view"
+                >
+                  <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                </button>
+              </div>
+
+              <!-- Interactive 4-Thumbnail Carousel Views (1:1 aspect) -->
+              <div class="thumb-tray flex items-center justify-between gap-1.5 mt-2.5 px-0.5" id="thumbs-${item.id}">
+                ${item.views.map((imgSrc, vIdx) => `
+                  <button 
+                    onclick="selectView(${item.id}, ${vIdx})" 
+                    class="thumb-btn relative aspect-square w-[22.5%] rounded-lg overflow-hidden border-2 transition-all duration-200 ${vIdx === 0 ? 'border-amber-400 scale-[1.03] shadow-[0_0_8px_rgba(212,175,55,0.5)]' : 'border-white/10 opacity-70 hover:opacity-100 hover:border-amber-400/50'}"
+                    data-view-idx="${vIdx}"
+                  >
+                    <img 
+                      src="${imgSrc}" 
+                      alt="Thumbnail ${vIdx + 1}" 
+                      class="w-full h-full object-cover" 
+                      loading="lazy"
+                    />
+                  </button>
+                `).join('')}
+              </div>
+            </div>
+
+            <!-- Content Area: Title, Rating, Pricing -->
+            <div class="mt-3.5 flex flex-col flex-grow">
+              <span class="text-[11px] font-medium tracking-wider uppercase text-amber-400/80 mb-0.5">
+                ${item.category}
+              </span>
+              <h3 class="text-base font-semibold text-gray-100 hover:text-amber-300 transition-colors line-clamp-1" title="${item.title}">
+                ${item.title}
+              </h3>
+
+              <!-- Star Rating & Review count -->
+              <div class="flex items-center gap-1.5 mt-1.5">
+                <div class="flex text-amber-400">
+                  <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400 stroke-amber-400"></i>
+                </div>
+                <span class="text-xs font-bold text-gray-200">${item.rating}</span>
+                <span class="text-xs text-gray-400">(${item.reviews})</span>
+                <span class="ml-auto text-[10px] uppercase font-bold text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-1.5 py-0.5 rounded">
+                  In Stock
+                </span>
+              </div>
+
+              <!-- Pricing Display -->
+              <div class="flex items-baseline gap-2 mt-3 pt-2.5 border-t border-white/5">
+                <span class="text-xl sm:text-2xl font-bold font-luxury text-amber-300">
+                  ₹${item.currentPrice}
+                </span>
+                <span class="text-xs sm:text-sm text-gray-400 line-through">
+                  ₹${item.originalPrice}
+                </span>
+                <span class="text-xs font-semibold text-rose-400 ml-auto">
+                  Save ₹${item.originalPrice - item.currentPrice}
+                </span>
+              </div>
+            </div>
+
+            <!-- Action Buttons: Add to Cart & Buy Now -->
+            <div class="grid grid-cols-2 gap-2 mt-3.5 pt-1">
+              <button 
+                onclick="handleAddToCart('${item.title}', ${item.currentPrice})" 
+                class="w-full py-2.5 px-2 rounded-xl text-xs font-semibold text-amber-300 bg-white/5 hover:bg-amber-400/15 border border-amber-400/30 hover:border-amber-400/70 transition-all duration-200 flex items-center justify-center gap-1.5 active:scale-95"
+              >
+                <i data-lucide="shopping-cart" class="w-3.5 h-3.5"></i>
+                <span>Add to Cart</span>
+              </button>
+              
+              <button 
+                onclick="handleBuyNow('${item.title}', ${item.currentPrice})" 
+                class="btn-vip-buy w-full py-2.5 px-2 rounded-xl text-xs font-bold text-neutral-950 flex items-center justify-center gap-1.5 active:scale-95 shadow-md"
+              >
+                <i data-lucide="zap" class="w-3.5 h-3.5 fill-neutral-950 stroke-none"></i>
+                <span>Buy Now</span>
+              </button>
+            </div>
+
+          </div>
+        `;
+      }).join('');
+
+      // Render Lucide icons dynamically
+      lucide.createIcons();
+    }
+
+    // Image Carousel State Tracker: mapping product id to active image index
+    const activeViewIndices = {};
+    productsData.forEach(p => activeViewIndices[p.id] = 0);
+
+    // Switch main image to selected index
+    function selectView(productId, viewIndex) {
+      const product = productsData.find(p => p.id === productId);
+      if (!product) return;
+
+      activeViewIndices[productId] = viewIndex;
+      const mainImg = document.getElementById(`main-img-${productId}`);
+      if (mainImg) {
+        mainImg.src = product.views[viewIndex];
+      }
+
+      // Update thumbnail active states
+      const thumbTray = document.getElementById(`thumbs-${productId}`);
+      if (thumbTray) {
+        const buttons = thumbTray.querySelectorAll('.thumb-btn');
+        buttons.forEach((btn, idx) => {
+          if (idx === viewIndex) {
+            btn.className = "thumb-btn relative aspect-square w-[22.5%] rounded-lg overflow-hidden border-2 transition-all duration-200 border-amber-400 scale-[1.03] shadow-[0_0_8px_rgba(212,175,55,0.5)]";
+          } else {
+            btn.className = "thumb-btn relative aspect-square w-[22.5%] rounded-lg overflow-hidden border-2 transition-all duration-200 border-white/10 opacity-70 hover:opacity-100 hover:border-amber-400/50";
+          }
+        });
+      }
+    }
+
+    // Previous / Next view arrows
+    function cycleImage(productId, step) {
+      const current = activeViewIndices[productId] || 0;
+      const product = productsData.find(p => p.id === productId);
+      if (!product) return;
+
+      let nextIndex = (current + step + product.views.length) % product.views.length;
+      selectView(productId, nextIndex);
+    }
+
+    // Wishlist Toggle
+    function toggleWishlist(btn, productName) {
+      const icon = btn.querySelector('svg');
+      const isFilled = icon.getAttribute('fill') === 'currentColor';
+      if (isFilled) {
+        icon.setAttribute('fill', 'none');
+        btn.classList.remove('text-rose-500');
+        btn.classList.add('text-gray-300');
+        showToast(`Removed "${productName}" from Wishlist`);
+      } else {
+        icon.setAttribute('fill', 'currentColor');
+        btn.classList.add('text-rose-500');
+        btn.classList.remove('text-gray-300');
+        showToast(`Saved "${productName}" to Wishlist!`);
+      }
+    }
+
+    // Action Toast Handlers
+    let toastTimeout;
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMsg');
+      if (!toast || !toastMsg) return;
+
+      toastMsg.textContent = message;
+      toast.classList.remove('hide');
+      toast.classList.add('show');
+
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+        toast.classList.add('hide');
+      }, 2600);
+    }
+
+    function handleAddToCart(name, price) {
+      showToast(`Added ${name} (₹${price}) to your cart!`);
+    }
+
+    function handleBuyNow(name, price) {
+      showToast(`Redirecting to secure VIP checkout for ${name}...`);
+    }
+
+    // Initialize product grid on DOM load
+    window.addEventListener('DOMContentLoaded', () => {
+      renderProductCards();
+    });
+  </script>
+</body>
+</html>
+```
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Akanksha Cosmetics — VIP Product Collection</title>
+<style>
+:root{--pink:#f22d82;--pink2:#ff8fbd;--gold:#f5d38a;--plum:#210d27;--plum2:#38133d;--cream:#fff8fc;--green:#16843b}
+*{box-sizing:border-box}
+.ac-products-widget{font-family:Arial,Helvetica,sans-serif;color:#29172a;padding:clamp(12px,2.5vw,28px);background:radial-gradient(circle at 15% 0,#57204d 0,transparent 34%),radial-gradient(circle at 90% 35%,#522054 0,transparent 32%),linear-gradient(135deg,#120817,#28102c 55%,#100714);border-radius:22px}
+.ac-products-widget button,.ac-products-widget input,.ac-products-widget textarea{font:inherit}
+.ac-products-widget button{cursor:pointer}
+.ac-vip-heading{text-align:center;color:#fff4fb;padding:14px 8px 26px}
+.ac-vip-heading .ac-kicker{color:var(--gold);font-size:11px;letter-spacing:3px;font-weight:800}
+.ac-vip-heading h2{font-family:Georgia,serif;font-size:clamp(27px,4vw,44px);margin:10px 0;background:linear-gradient(90deg,#fff0c8,#ff86bc,#f5d38a);background-clip:text;color:transparent}
+.ac-vip-heading p{color:#e9cddd;font-size:14px}
+.ac-shop-tools{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 18px}
+.ac-search{width:min(100%,360px);padding:12px 15px;border:1px solid #8e557f;border-radius:12px;background:#1b0d20;color:white;outline:none}
+.ac-cart-open,.ac-vip-order{border:0;border-radius:12px;padding:12px 16px;font-weight:800;color:#351027;background:linear-gradient(110deg,#fff0c7,#ff83bb);box-shadow:0 6px 20px #0003}
+.ac-cart-open span{background:#32112b;color:white;border-radius:99px;padding:3px 8px;margin-left:5px}
+.ac-product-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.ac-product-card{min-width:0;overflow:hidden;border:1px solid #f5d38a55;border-radius:16px;background:#fff;box-shadow:0 12px 28px #0003;transition:transform .22s,box-shadow .22s}
+.ac-product-card:hover{transform:translateY(-4px);box-shadow:0 16px 34px #0005}
+.ac-photo-area{position:relative;aspect-ratio:1/1;background:linear-gradient(135deg,#ffe7f0,#fff5fa);overflow:hidden}
+.ac-main-photo{width:100%;height:100%;object-fit:contain;display:block;transition:transform .35s;cursor:zoom-in}
+.ac-photo-area:hover .ac-main-photo{transform:scale(1.1)}
+.ac-discount{position:absolute;top:10px;left:10px;background:#16843b;color:white;border-radius:5px;padding:6px 8px;font-size:11px;font-weight:800;z-index:1}
+.ac-assured{position:absolute;right:8px;top:9px;background:#fff9e8;color:#62440a;border:1px solid #e9c978;border-radius:5px;padding:5px 7px;font-size:10px;font-weight:800;z-index:1}
+.ac-heart{position:absolute;right:9px;bottom:48px;border:0;width:34px;height:34px;border-radius:50%;background:#ffffffeb;color:#d92b73;font-size:20px;box-shadow:0 2px 10px #0002;z-index:2}
+.ac-thumbs{display:flex;gap:6px;justify-content:center;padding:8px;background:#fff;border-top:1px solid #f5e5ed}
+.ac-thumb{width:43px;height:43px;padding:0;border:2px solid #f1d6e3;border-radius:7px;overflow:hidden;background:#fff}
+.ac-thumb.active{border-color:#e52c7a;box-shadow:0 0 0 1px #e52c7a}
+.ac-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.ac-card-body{padding:12px}
+.ac-product-title{font-size:15px;line-height:1.35;min-height:40px;margin:0 0 6px;color:#211522}
+.ac-rating{font-size:12px;color:#b57b15;margin-bottom:9px}
+.ac-rating small{color:#7e6b7a}
+.ac-price-line{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:0 0 13px}
+.ac-current{font-size:20px;font-weight:900;color:#241323}
+.ac-old{font-size:12px;color:#91848f;text-decoration:line-through}
+.ac-off{font-size:11px;font-weight:800;color:#16843b}
+.ac-card-buttons{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.ac-card-buttons button{border-radius:9px;padding:10px 5px;font-size:12px;font-weight:800}
+.ac-add{border:1px solid #d92b73;background:#fff;color:#bd1e60}
+.ac-buy{border:1px solid #d92b73;background:linear-gradient(110deg,#f52e82,#b91561);color:white}
+.ac-empty{color:#fff;text-align:center;padding:30px;grid-column:1/-1}
+.ac-widget-note{color:#d8bcd2;font-size:11px;line-height:1.6;margin-top:20px;text-align:center}
+.ac-modal{display:none;position:fixed;inset:0;z-index:99999;background:#08040bdc;backdrop-filter:blur(7px);align-items:center;justify-content:center;padding:14px}
+.ac-modal.open{display:flex}
+.ac-modal-box{position:relative;width:min(620px,100%);max-height:92vh;overflow:auto;border:1px solid #e7bf70;border-radius:20px;background:radial-gradient(circle at top right,#65214e,transparent 45%),linear-gradient(145deg,#2c1231,#120818);color:#fff5fb;padding:22px;box-shadow:0 20px 70px #0008}
+.ac-modal-box h3{font-family:Georgia,serif;font-size:25px;color:var(--gold);margin:0 42px 18px 0}
+.ac-modal-close{position:absolute;right:12px;top:12px;width:36px;height:36px;border:1px solid #ffffff44;border-radius:50%;background:#17091d;color:white;font-size:22px}
+.ac-cart-row{display:grid;grid-template-columns:64px 1fr auto;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid #ffffff24}
+.ac-cart-row img{width:64px;height:64px;object-fit:contain;background:#fff0f6;border-radius:9px}
+.ac-cart-row strong{font-size:13px;display:block}
+.ac-cart-row small{color:#e2c9dd}
+.ac-qty{display:flex;align-items:center;gap:8px;margin-top:7px}
+.ac-qty button{width:25px;height:25px;border:0;border-radius:6px;background:#683056;color:#fff;font-weight:900}
+.ac-remove{border:0;background:none;color:#ffb0d0;font-size:12px;margin-left:5px}
+.ac-cart-total{display:flex;justify-content:space-between;gap:12px;padding:17px 0;font-size:19px;font-weight:900}
+.ac-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.ac-field{display:flex;flex-direction:column;gap:6px}
+.ac-field.full{grid-column:1/-1}
+.ac-field label{font-size:12px;color:#f4dce9}
+.ac-field input,.ac-field textarea,.ac-field select{width:100%;border:1px solid #845274;border-radius:10px;padding:12px;background:#160a1c;color:white;outline:none}
+.ac-field textarea{min-height:76px;resize:vertical}
+.ac-form-help{color:#e4c9dc;font-size:12px;line-height:1.6;margin:12px 0}
+.ac-whatsapp-submit{width:100%;border:0;border-radius:12px;padding:14px;background:linear-gradient(110deg,#29c85a,#12863c);color:white;font-weight:900;font-size:15px}
+.ac-map-link{display:inline-block;margin-top:9px;color:#ffe3a8;font-size:12px;text-decoration:underline}
+.ac-toast{position:fixed;bottom:18px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;z-index:100000;background:#2b1230;color:white;border:1px solid var(--gold);padding:12px 18px;border-radius:12px;transition:.25s;max-width:90%;text-align:center}
+.ac-toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:980px){.ac-product-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:680px){.ac-product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.ac-products-widget{padding:10px;border-radius:15px}.ac-card-body{padding:10px}.ac-product-title{font-size:13px;min-height:36px}.ac-current{font-size:17px}.ac-card-buttons{grid-template-columns:1fr}.ac-thumb{width:36px;height:36px}.ac-form-grid{grid-template-columns:1fr}.ac-field.full{grid-column:auto}}
+@media(max-width:360px){.ac-product-grid{grid-template-columns:1fr 1fr}.ac-vip-heading h2{font-size:26px}.ac-thumbs{gap:4px}}
+</style>
+</head>
+<body style="margin:0">
+<!-- Product-only section: no logo or navigation bar; paste this component inside your existing page. -->
+<section class="ac-products-widget" id="akankshaVipProducts">
+  
+  <div class="ac-shop-tools">
+    <input class="ac-search" id="acSearch" type="search" placeholder="🔍 प्रोडक्ट खोजें..." aria-label="Search products">
+    <button class="ac-cart-open" id="acOpenCart">🛒 Add to Cart <span id="acCartCount">0</span></button>
+  </div>
+  <div class="ac-product-grid" id="acProductGrid"></div>
+  <p class="ac-widget-note">प्रोडक्ट की तस्वीरें इंटरनेट से लोड होती हैं। असली स्टॉक, कीमत और ब्रांड/पैकेजिंग WhatsApp पर ऑर्डर से पहले कन्फर्म करें।</p>
 </section>
 
+<div class="ac-modal" id="acCartModal" role="dialog" aria-modal="true" aria-label="Shopping cart">
+ <div class="ac-modal-box">
+  <button class="ac-modal-close" data-close="acCartModal" aria-label="Close">×</button>
+  <h3>🛍️ Your VIP Cart</h3>
+  <div id="acCartItems"></div>
+  <div class="ac-cart-total"><span>कुल राशि</span><span id="acCartTotal">₹0</span></div>
+  <button class="ac-vip-order" id="acCheckoutButton" style="width:100%">📍 Address भरें और WhatsApp Order करें</button>
+ </div>
+</div>
+
+<div class="ac-modal" id="acCheckoutModal" role="dialog" aria-modal="true" aria-label="Customer address and order">
+ <div class="ac-modal-box">
+  <button class="ac-modal-close" data-close="acCheckoutModal" aria-label="Close">×</button>
+  <h3>👑 VIP Order Details</h3>
+  <p style="color:#e8cddd;font-size:13px;line-height:1.6;margin:-7px 0 17px">अपना पता भरें। बटन दबाने पर WhatsApp खुलेगा और आपका ऑर्डर मैसेज तैयार मिलेगा। भेजने से पहले आप मैसेज देख सकते हैं।</p>
+  <form id="acCheckoutForm">
+   <div class="ac-form-grid">
+    <div class="ac-field"><label for="acCustomerName">ग्राहक का नाम *</label><input id="acCustomerName" name="name" required autocomplete="name" placeholder="पूरा नाम"></div>
+    <div class="ac-field"><label for="acCustomerPhone">मोबाइल नंबर *</label><input id="acCustomerPhone" name="phone" required inputmode="tel" pattern="[0-9+\-\s]{10,16}" autocomplete="tel" placeholder="10 अंकों का नंबर"></div>
+    <div class="ac-field full"><label for="acCustomerAddress">पूरा डिलीवरी पता *</label><textarea id="acCustomerAddress" name="address" required autocomplete="street-address" placeholder="मकान/गली, मोहल्ला, शहर, जिला, राज्य, PIN code"></textarea></div>
+    <div class="ac-field"><label for="acCustomerPin">PIN Code</label><input id="acCustomerPin" name="pin" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="postal-code" placeholder="6 अंकों का PIN"></div>
+    <div class="ac-field"><label for="acPayment">भुगतान की पसंद</label><select id="acPayment" name="payment"><option>Cash on Delivery (पुष्टि के अधीन)</option><option>UPI (WhatsApp पर पुष्टि करें)</option></select></div>
+    <div class="ac-field full"><label for="acCustomerNote">ऑर्डर नोट (वैकल्पिक)</label><textarea id="acCustomerNote" name="note" placeholder="रंग, वैरिएंट या डिलीवरी संबंधी जानकारी"></textarea></div>
+   </div>
+   <p class="ac-form-help">📍 पता और कार्ट की जानकारी WhatsApp पर Ankit Gautam को भेजने के लिए तैयार होगी। यह वेबसाइट अपने-आप पेमेंट नहीं लेती।</p>
+   <button class="ac-whatsapp-submit" type="submit">💚 WhatsApp पर Order भेजें · 7983199902</button>
+   
+  <a class="ac-map-link" id="acMapLink" href="https://www.google.com/maps/place/Sunil+Gupta+Enterprises/@26.7630029,79.7136751,17z/data=!3m1!4b1!4m6!3m5!1s0x399de165424ec1f7:0x752545fdb1cf99a5!8m2!3d26.7630029!4d79.71625!16s%2Fg%2F11tdjlyzcn?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">📍 Google Maps पर पता देखें</a></button>
+  </form>
+ </div>
+</div>
+<div class="ac-toast" id="acToast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+"use strict";
+const WA_NUMBER="917983199902"; // India country code +91, no plus sign
+// Real online product/beauty photography. Images require an internet connection.
+// Four distinct photo views are supplied per product; imagery is illustrative and may not match exact retail packaging.
+const photoSets = {
+ lipstick:[
+  "https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=800&q=85",
+  "https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=800&q=85",
+  "https://images.unsplash.com/photo-1591360236480-4ed861025fa1?auto=format&fit=crop&w=800&q=85",
+  "https://images.unsplash.com/photo-1631214524020-7e18db9a8f92?auto=format&fit=crop&w=800&q=85"
+ ],
+ general:[
+  "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=800&q=85",
+  "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=800&q=85",
+  "https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=800&q=85",
+  "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=800&q=85"
+ ],
+ skincare:[
+  "https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?auto=format&fit=crop&w=800&q=85",
+  "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=800&q=85",
+  "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=800&q=85",
+  "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=800&q=85"
+ ],
+ palette:[
+  "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=800&q=85",
+  "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=85",
+  "https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=800&q=85",
+  "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=800&q=85"
+ ],
+ perfume:[
+  "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=800&q=85",
+  "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=800&q=85",
+  "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=800&q=85",
+  "https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=800&q=85"
+ ],
+ tools:[
+  "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=85",
+  "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=800&q=85",
+  "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=800&q=85",
+  "https://images.unsplash.com/photo-1526045478516-99145907023c?auto=format&fit=crop&w=800&q=85"
+ ],
+ jewelry:[
+  "https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=800&q=85",
+  "https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=800&q=85",
+  "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=800&q=85",
+  "https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=800&q=85"
+ ],
+ bag:[
+  "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=85",
+  "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=800&q=85",
+  "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=800&q=85",
+  "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=85"
+ ],
+ hair:[
+  "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=800&q=85",
+  "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=800&q=85",
+  "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=800&q=85",
+  "https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?auto=format&fit=crop&w=800&q=85"
+ ],
+ nails:[
+  "https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=800&q=85",
+  "https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=800&q=85",
+  "https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=800&q=85",
+  "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?auto=format&fit=crop&w=800&q=85"
+ ]
+};
+const products=[
+ {id:1,name:"Nail Polish",price:99,old:149,rate:"4.5",reviews:128,kind:"nails"},
+ {id:2,name:"VIP Mascara",price:179,old:249,rate:"4.4",reviews:96,kind:"tools"},
+ {id:3,name:"Highlighter Palette",price:249,old:399,rate:"4.6",reviews:84,kind:"palette"},
+ {id:4,name:"Makeup Primer",price:199,old:299,rate:"4.3",reviews:76,kind:"skincare"},
+ {id:5,name:"Face Wash",price:149,old:249,rate:"4.4",reviews:210,kind:"skincare"},
+ {id:6,name:"Moisturizer Aloe Vera Gel",price:179,old:279,rate:"4.5",reviews:144,kind:"skincare"},
+ {id:7,name:"Sunscreen SPF 50",price:249,old:399,rate:"4.6",reviews:185,kind:"skincare"},
+ {id:8,name:"Body Lotion",price:199,old:299,rate:"4.3",reviews:103,kind:"skincare"},
+ {id:9,name:"Sindoor Bindi",price:99,old:149,rate:"4.2",reviews:62,kind:"jewelry"},
+ {id:10,name:"Makeup Brushes & Beauty Blenders",price:299,old:449,rate:"4.5",reviews:92,kind:"tools"},
+ {id:11,name:"Reusable Makeup Remover Pads",price:129,old:199,rate:"4.4",reviews:58,kind:"general"},
+ {id:12,name:"Pocket Perfume",price:199,old:299,rate:"4.3",reviews:113,kind:"perfume"},
+ {id:13,name:"Luxury Matte Lipstick",price:299,old:499,rate:"4.5",reviews:128,kind:"lipstick"},
+ {id:14,name:"Kajal",price:99,old:159,rate:"4.4",reviews:156,kind:"tools"},
+ {id:15,name:"Eyeshadow Palette",price:349,old:549,rate:"4.6",reviews:88,kind:"palette"},
+ {id:16,name:"Compact Powder",price:229,old:349,rate:"4.3",reviews:101,kind:"palette"},
+ {id:17,name:"Lip Gloss",price:179,old:279,rate:"4.4",reviews:78,kind:"lipstick"},
+ {id:18,name:"Face Serum",price:299,old:449,rate:"4.5",reviews:139,kind:"skincare"},
+ {id:19,name:"Hair Oil",price:189,old:279,rate:"4.2",reviews:97,kind:"hair"},
+ {id:20,name:"Compact Mirror",price:149,old:229,rate:"4.3",reviews:69,kind:"general"}
+];
+// Keep all product images 1:1 and cycle through four photos for each card.
+const cart=[];
+const $=id=>document.getElementById(id);
+const rupees=n=>"₹"+Number(n).toLocaleString("en-IN");
+const discount=p=>Math.round((p.old-p.price)/p.old*100);
+const photo=(p,index)=>photoSets[p.kind][index%photoSets[p.kind].length];
+const escapeHtml=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function showToast(message){const t=$("acToast");t.textContent=message;t.classList.add("show");clearTimeout(showToast.timer);showToast.timer=setTimeout(()=>t.classList.remove("show"),2300)}
+function renderProducts(){
+ const q=$("acSearch").value.trim().toLowerCase();
+ const filtered=products.filter(p=>p.name.toLowerCase().includes(q));
+ $("acProductGrid").innerHTML=filtered.length?filtered.map(p=>`
+  <article class="ac-product-card" data-product="${p.id}">
+   <div class="ac-photo-area">
+    <span class="ac-discount">${discount(p)}% OFF</span><span class="ac-assured">✓ VIP PICK</span>
+    <img class="ac-main-photo" src="${photo(p,0)}" alt="${escapeHtml(p.name)} product photo" loading="lazy" data-main="${p.id}" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=800&q=80'">
+    <button class="ac-heart" type="button" data-like="${p.id}" aria-label="Wishlist">♡</button>
+   </div>
+   <div class="ac-thumbs" aria-label="Choose product image">
+    ${[0,1,2,3].map((i)=>`<button class="ac-thumb ${i===0?'active':''}" type="button" data-photo="${p.id}" data-index="${i}" aria-label="Image ${i+1} of ${escapeHtml(p.name)}"><img src="${photo(p,i)}" alt="" loading="lazy" onerror="this.style.opacity='.25'"></button>`).join("")}
+   </div>
+   <div class="ac-card-body">
+    <h3 class="ac-product-title">${escapeHtml(p.name)}</h3>
+    <div class="ac-rating">★★★★★ <small>${p.rate} (${p.reviews} reviews)</small></div>
+    <div class="ac-price-line"><span class="ac-current">${rupees(p.price)}</span><span class="ac-old">${rupees(p.old)}</span><span class="ac-off">${discount(p)}% off</span></div>
+    <div class="ac-card-buttons"><button class="ac-add" type="button" data-add="${p.id}">🛒 Add to Cart</button><button class="ac-buy" type="button" data-buy="${p.id}">⚡ Buy Now</button></div>
+   </div>
+  </article>`).join(""):`<p class="ac-empty">कोई प्रोडक्ट नहीं मिला।</p>`;
+}
+function cartCount(){return cart.reduce((n,x)=>n+x.qty,0)}
+function updateCount(){$("acCartCount").textContent=cartCount()}
+function addToCart(id,qty=1){const p=products.find(x=>x.id===id);if(!p)return;const item=cart.find(x=>x.id===id);if(item)item.qty=Math.min(99,item.qty+qty);else cart.push({id,qty});updateCount();renderCart();showToast(p.name+" cart में जोड़ दिया गया।")}
+function removeFromCart(id){const i=cart.findIndex(x=>x.id===id);if(i>=0)cart.splice(i,1);updateCount();renderCart()}
+function changeQty(id,delta){const item=cart.find(x=>x.id===id);if(!item)return;item.qty=Math.max(1,Math.min(99,item.qty+delta));updateCount();renderCart()}
+function cartTotal(){return cart.reduce((sum,item)=>sum+products.find(p=>p.id===item.id).price*item.qty,0)}
+function renderCart(){
+ $("acCartItems").innerHTML=cart.length?cart.map(item=>{const p=products.find(x=>x.id===item.id);return `<div class="ac-cart-row"><img src="${photo(p,0)}" alt=""><div><strong>${escapeHtml(p.name)}</strong><small>${rupees(p.price)} each</small><div class="ac-qty"><button type="button" data-qty="${p.id}" data-delta="-1">−</button><span>${item.qty}</span><button type="button" data-qty="${p.id}" data-delta="1">+</button><button type="button" class="ac-remove" data-remove="${p.id}">Remove</button></div></div><strong>${rupees(p.price*item.qty)}</strong></div>`}).join(""):`<p style="color:#e7cddd;padding:20px 0">आपका कार्ट खाली है। पहले प्रोडक्ट जोड़ें।</p>`;
+ $("acCartTotal").textContent=rupees(cartTotal());
+ $("acCheckoutButton").disabled=!cart.length;
+ $("acCheckoutButton").style.opacity=cart.length?"1":".55";
+}
+function openModal(id){$(id).classList.add("open");document.body.style.overflow="hidden"}
+function closeModal(id){$(id).classList.remove("open");if(!$("acCartModal").classList.contains("open")&&!$("acCheckoutModal").classList.contains("open"))document.body.style.overflow=""}
+function buyNow(id){const p=products.find(x=>x.id===id);if(!p)return;const item=cart.find(x=>x.id===id);if(item)item.qty++;else cart.push({id,qty:1});updateCount();renderCart();openModal("acCheckoutModal")}
+function orderMessage(data){
+ const lines=cart.map(item=>{const p=products.find(x=>x.id===item.id);return `• ${p.name} × ${item.qty} = ${rupees(p.price*item.qty)}`});
+ return `👑 *AKANKSHA COSMETICS — VIP ORDER* 👑\n\n*Customer Details*\nName: ${data.name}\nPhone: ${data.phone}\nAddress: ${data.address}\nPIN Code: ${data.pin||"Not provided"}\nPayment preference: ${data.payment}\nCustomer note: ${data.note||"None"}\n\n*Order Items*\n${lines.join("\n")}\n\n*Total: ${rupees(cartTotal())}*\n\nPlease confirm product availability, final price and delivery charges.`;
+}
+$("acProductGrid").addEventListener("click",e=>{
+ const thumb=e.target.closest("[data-photo]");
+ if(thumb){const id=Number(thumb.dataset.photo),idx=Number(thumb.dataset.index),card=thumb.closest(".ac-product-card");const p=products.find(x=>x.id===id);card.querySelector("[data-main]").src=photo(p,idx);card.querySelectorAll(".ac-thumb").forEach(b=>b.classList.toggle("active",b===thumb));return}
+ const add=e.target.closest("[data-add]");if(add){addToCart(Number(add.dataset.add));return}
+ const buy=e.target.closest("[data-buy]");if(buy){buyNow(Number(buy.dataset.buy));return}
+ const like=e.target.closest("[data-like]");if(like){like.textContent=like.textContent==="♡"?"♥":"♡";like.style.color=like.textContent==="♥"?"#e11d68":"#d92b73";showToast(like.textContent==="♥"?"Wishlist में जोड़ा गया":"Wishlist से हटाया गया")}
+});
+$("acSearch").addEventListener("input",renderProducts);
+$("acOpenCart").addEventListener("click",()=>{renderCart();openModal("acCartModal")});
+$("acCartItems").addEventListener("click",e=>{const q=e.target.closest("[data-qty]");if(q){changeQty(Number(q.dataset.qty),Number(q.dataset.delta));return}const r=e.target.closest("[data-remove]");if(r)removeFromCart(Number(r.dataset.remove))});
+$("acCheckoutButton").addEventListener("click",()=>{if(!cart.length){showToast("पहले कार्ट में प्रोडक्ट जोड़ें।");return}closeModal("acCartModal");openModal("acCheckoutModal")});
+document.querySelectorAll(".ac-modal-close").forEach(b=>b.addEventListener("click",()=>closeModal(b.dataset.close)));
+document.querySelectorAll(".ac-modal").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)closeModal(m.id)}));
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeModal("acCartModal");closeModal("acCheckoutModal")}});
+$("acCheckoutForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ if(!cart.length){showToast("आपका कार्ट खाली है।");closeModal("acCheckoutModal");return}
+ const data={
+  name:$("acCustomerName").value.trim(),
+  phone:$("acCustomerPhone").value.trim(),
+  address:$("acCustomerAddress").value.trim(),
+  pin:$("acCustomerPin").value.trim(),
+  payment:$("acPayment").value,
+  note:$("acCustomerNote").value.trim()
+ };
+ if(!data.name||!data.phone||!data.address){showToast("कृपया नाम, मोबाइल और पता भरें।");return}
+ const text=orderMessage(data);
+ const url="https://wa.me/"+WA_NUMBER+"?text="+encodeURIComponent(text);
+ window.open(url,"_blank","noopener,noreferrer");
+});
+$("acMapLink").addEventListener("click",e=>{
+ const address=$("acCustomerAddress").value.trim();
+ if(address){e.currentTarget.href="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(address+" "+$("acCustomerPin").value.trim())}
+});
+renderProducts();updateCount();renderCart();
+})();
+</script>
+</body>
+</html>
+
+<!-- ==========================================
+ AKANKSHA COSMETICS SHOP
+ VIP PREMIUM PRODUCT GALLERY
+ HTML + CSS + JAVASCRIPT
+ No Search | No Add to Cart
+ ========================================== -->
+
+<style>
+/* All styles are scoped to this component */
+.ac-vip-products,
+.ac-vip-products * {
+    box-sizing: border-box;
+}
+
+.ac-vip-products {
+    --ac-pink: #e91e63;
+    --ac-dark-pink: #b31255;
+    --ac-gold: #d4a64c;
+    --ac-purple: #702b91;
+    --ac-text: #292039;
+
+    width: 100%;
+    padding: 25px 12px;
+    color: var(--ac-text);
+    font-family: Arial, Helvetica, sans-serif;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(255, 192, 220, .35),
+            transparent 40%
+        ),
+        linear-gradient(
+            135deg,
+            #fff7fb,
+            #fff0f5,
+            #f8efff
+        );
+
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+.ac-vip-products .ac-heading {
+    max-width: 1500px;
+    margin: 0 auto 22px;
+    padding: 0 8px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.ac-vip-products .ac-heading h2 {
+    margin: 0;
+    font-size: clamp(21px, 3vw, 30px);
+    font-weight: 800;
+    letter-spacing: -.5px;
+}
+
+.ac-vip-products .ac-heading h2 span {
+    color: var(--ac-pink);
+}
+
+.ac-vip-products .ac-subtitle {
+    color: #826b7a;
+    font-size: 12px;
+    margin-top: 6px;
+}
+
+.ac-vip-products .ac-vip-label {
+    background: linear-gradient(
+        135deg,
+        #b31255,
+        #e91e63,
+        #d4a64c
+    );
+
+    color: white;
+    padding: 9px 15px;
+    border-radius: 30px;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 0 5px 15px #e91e6330;
+}
+
+.ac-vip-products .ac-product-grid {
+    max-width: 1500px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.ac-vip-products .ac-card {
+    position: relative;
+    min-width: 0;
+    background: rgba(255, 255, 255, .96);
+    border: 1px solid #f1d8e3;
+    border-radius: 16px;
+    overflow: hidden;
+
+    box-shadow: 0 6px 22px rgba(105, 30, 70, .08);
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+}
+
+.ac-vip-products .ac-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 30px rgba(105, 30, 70, .15);
+}
+
+/* Image slider */
+.ac-vip-products .ac-gallery {
+    position: relative;
+    padding: 8px;
+    background: linear-gradient(
+        135deg,
+        #fff0f5,
+        #f8e9ff,
+        #fff8ed
+    );
+}
+
+.ac-vip-products .ac-image-stage {
+    position: relative;
+    height: 230px;
+    overflow: hidden;
+    border-radius: 11px;
+    background: #fff0f5;
+}
+
+.ac-vip-products .ac-image-stage img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 5px;
+
+    transition:
+        opacity .25s ease,
+        transform .4s ease;
+}
+
+.ac-vip-products .ac-card:hover
+.ac-image-stage img {
+    transform: scale(1.04);
+}
+
+.ac-vip-products .ac-image-stage img.ac-changing {
+    opacity: .25;
+}
+
+/* Product label */
+.ac-vip-products .ac-badge {
+    position: absolute;
+    top: 17px;
+    left: 16px;
+    z-index: 2;
+
+    padding: 6px 9px;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    border-radius: 6px;
+
+    background: linear-gradient(
+        135deg,
+        #702b91,
+        #e91e63
+    );
+}
+
+.ac-vip-products .ac-discount {
+    position: absolute;
+    right: 16px;
+    top: 17px;
+    z-index: 2;
+
+    background: #198754;
+    color: white;
+    padding: 6px 8px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+/* Wishlist */
+.ac-vip-products .ac-wishlist {
+    position: absolute;
+    bottom: 18px;
+    right: 17px;
+    z-index: 3;
+
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid #f1d4e2;
+
+    background: rgba(255, 255, 255, .96);
+    color: #bd285e;
+    font-size: 19px;
+    cursor: pointer;
+
+    display: grid;
+    place-items: center;
+
+    box-shadow: 0 3px 10px #00000010;
+}
+
+.ac-vip-products .ac-wishlist.is-liked {
+    color: #fff;
+    background: #e91e63;
+}
+
+/* Navigation dots: exactly four per product */
+.ac-vip-products .ac-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 0 3px;
+}
+
+.ac-vip-products .ac-dot {
+    width: 7px;
+    height: 7px;
+    border: none;
+    border-radius: 20px;
+    background: #d9b8c8;
+    cursor: pointer;
+    padding: 0;
+
+    transition: all .25s ease;
+}
+
+.ac-vip-products .ac-dot.active {
+    width: 22px;
+    background: linear-gradient(
+        90deg,
+        #e91e63,
+        #a855f7
+    );
+}
+
+/* Product information */
+.ac-vip-products .ac-info {
+    padding: 13px 14px 15px;
+}
+
+.ac-vip-products .ac-name {
+    margin: 0 0 8px;
+    color: #30243a;
+    font-size: 16px;
+    line-height: 1.4;
+    font-weight: 750;
+}
+
+.ac-vip-products .ac-brand {
+    color: #8e7d8b;
+    font-size: 11px;
+    margin-bottom: 9px;
+}
+
+.ac-vip-products .ac-rating {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    font-size: 12px;
+    margin-bottom: 11px;
+}
+
+.ac-vip-products .ac-stars {
+    color: #e3a322;
+    letter-spacing: 1px;
+}
+
+.ac-vip-products .ac-reviews {
+    color: #8d818a;
+    font-size: 11px;
+}
+
+.ac-vip-products .ac-price-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-bottom: 14px;
+}
+
+.ac-vip-products .ac-price {
+    font-size: 23px;
+    font-weight: 800;
+    color: #241b2d;
+}
+
+.ac-vip-products .ac-old-price {
+    font-size: 12px;
+    color: #9c9098;
+    text-decoration: line-through;
+}
+
+.ac-vip-products .ac-save {
+    color: #16844c;
+    font-size: 11px;
+    font-weight: 750;
+}
+
+/* Premium buttons */
+.ac-vip-products .ac-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.ac-vip-products .ac-btn {
+    min-width: 0;
+    min-height: 42px;
+    padding: 10px 6px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    border-radius: 9px;
+    font-size: 12px;
+    font-weight: 750;
+    text-decoration: none;
+    cursor: pointer;
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+.ac-vip-products .ac-btn:active {
+    transform: scale(.97);
+}
+
+.ac-vip-products .ac-buy {
+    color: white;
+    border: none;
+    background: linear-gradient(
+        120deg,
+        #e91e63,
+        #bd1255,
+        #9b287f
+    );
+
+    box-shadow: 0 4px 12px #e91e6330;
+}
+
+.ac-vip-products .ac-buy:hover {
+    box-shadow: 0 7px 18px #e91e6345;
+}
+
+.ac-vip-products .ac-share {
+    color: #8b2457;
+    background: #fff;
+    border: 1px solid #e9bfd2;
+}
+
+.ac-vip-products .ac-share:hover {
+    background: #fff0f6;
+}
+
+.ac-vip-products .ac-footer-note {
+    max-width: 1500px;
+    margin: 22px auto 0;
+    text-align: center;
+    color: #866d7c;
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+/* Tablet */
+@media (max-width: 1000px) {
+    .ac-vip-products .ac-product-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 13px;
+    }
+
+    .ac-vip-products .ac-image-stage {
+        height: 205px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 650px) {
+    .ac-vip-products {
+        padding: 18px 9px;
+        border-radius: 12px;
+    }
+
+    .ac-vip-products .ac-product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .ac-vip-products .ac-image-stage {
+        height: clamp(135px, 43vw, 210px);
+    }
+
+    .ac-vip-products .ac-info {
+        padding: 10px 9px 12px;
+    }
+
+    .ac-vip-products .ac-name {
+        font-size: 13px;
+    }
+
+    .ac-vip-products .ac-price {
+        font-size: 19px;
+    }
+
+    .ac-vip-products .ac-old-price {
+        font-size: 10px;
+    }
+
+    .ac-vip-products .ac-save {
+        font-size: 10px;
+    }
+
+    .ac-vip-products .ac-btn {
+        font-size: 11px;
+        min-height: 39px;
+    }
+
+    .ac-vip-products .ac-actions {
+        gap: 6px;
+    }
+
+    .ac-vip-products .ac-badge,
+    .ac-vip-products .ac-discount {
+        font-size: 9px;
+        padding: 5px 6px;
+    }
+
+    .ac-vip-products .ac-heading {
+        margin-bottom: 15px;
+    }
+}
+
+/* Small mobile */
+@media (max-width: 360px) {
+    .ac-vip-products .ac-product-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ac-vip-products .ac-image-stage {
+        height: 260px;
+    }
+
+    .ac-vip-products .ac-name {
+        font-size: 16px;
+    }
+}
+</style>
+
+
+<script>
+const slides = [
+ {eyebrow:"THE VIP BEAUTY EDIT", title:"Beauty", emphasis:"in Every Look", desc:"Discover your glow with beauty, fashion and style — curated just for you.", bg:0,
+  images:["https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=500&q=85","https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=85","https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=500&q=85"]},
+ {eyebrow:"GLOW LIKE YOU MEAN IT", title:"Your Glow", emphasis:"Your Rules", desc:"Find your favourites and bring a little luxury to your everyday routine.", bg:1,
+  images:["https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=500&q=85","https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=85","https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=500&q=85"]},
+ {eyebrow:"STYLE • BEAUTY • CONFIDENCE", title:"Elegance", emphasis:"Every Day", desc:"From statement beauty to timeless accessories, your next favourite is here.", bg:2,
+  images:["https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=500&q=85","https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=600&q=85","https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=500&q=85"]},
+ {eyebrow:"A LITTLE EXTRA LUXURY", title:"Shine", emphasis:"Your Way", desc:"Make every moment feel special with the Akanksha Cosmetics collection.", bg:3,
+  images:["https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=500&q=85","https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=600&q=85","https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=500&q=85"]}
+];
+const hero=document.getElementById('hero');
+const modelEls=[...document.querySelectorAll('.model')];
+const dotsWrap=document.getElementById('dots');
+let current=0,timer;
+document.getElementById('year').textContent=new Date().getFullYear();
+
+slides.forEach((s,i)=>{
+ const b=document.createElement('button');
+ b.className='dot'+(i===0?' active':'');
+ b.setAttribute('aria-label','Show banner '+(i+1));
+ b.addEventListener('click',()=>showSlide(i,true));
+ dotsWrap.appendChild(b);
+});
+
+function showSlide(index,resetTimer=false){
+ current=(index+slides.length)%slides.length;
+ const s=slides[current];
+ hero.classList.add('changing');
+ window.setTimeout(()=>{
+  document.getElementById('eyebrow').textContent=s.eyebrow;
+  document.getElementById('headline').innerHTML=s.title+' <em>'+s.emphasis+'</em>';
+  document.getElementById('description').textContent=s.desc;
+  hero.dataset.slide=s.bg;
+  modelEls.forEach((img,i)=>{img.src=s.images[i];});
+  [...dotsWrap.children].forEach((d,i)=>d.classList.toggle('active',i===current));
+  hero.classList.remove('changing');
+ },260);
+ if(resetTimer){clearInterval(timer);startTimer();}
+}
+function startTimer(){timer=setInterval(()=>showSlide(current+1),5000);}
+function shopNow(event){if(event)event.preventDefault();document.getElementById('categories').scrollIntoView({behavior:'smooth'});}
+startTimer();
+</script>
+</body>
+</html>
 <!-- 💎 AKANKSHA COSMETICS VIP PREMIUM PRODUCT SECTION -->
 <section id="akc-vip-store">
 
@@ -754,6 +2343,8 @@ Akanksha Cosmetics Shop</h3>
 }
 </style>
 
+
+
 <div class="akc-header">
     <div class="akc-crown">👑</div>
     <h2>AKANKSHA COSMETICS</h2>
@@ -802,7 +2393,7 @@ Akanksha Cosmetics Shop</h3>
             emoji: "💄",
             price: 149,
             oldPrice: 499,
-            image: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=600&q=80"
+            image: "https://share.gemini.google/ugx9uQn6gV7A"
         },
         {
             id: 2,
@@ -1165,471 +2756,7 @@ Akanksha Cosmetics Shop</h3>
 </script>
 
 </section>
-<!-- 💎 END AKANKSHA COSMETICS VIP STORE -->
 
-</body>
-</html>
-
-<section class="content" id="products">
-  <div class="section-title">
-    <h2>💎 <span>VIP Collection</span></h2>
-    <p>Featured Products • Best Sellers • Premium Style</p>
-  </div>
-  <div class="grid" id="productGrid"></div>
-</section>
-
-<section class="content" id="location">
-  <div class="section-title">
-    <h2>📍 <span>Visit Our Store</span></h2>
-    <p>Akanksha Cosmetics Shop · Yakubpur, Auraiya, Uttar Pradesh</p>
-  </div>
-  <div class="location-box">
-    <h3>💎 Akanksha Cosmetics Shop</h3>
-    <p style="margin-top:12px">
-      Sunil Gupta Market, Yakubpur, Auraiya, UP<br>
-      📞 7983199902
-    </p>
-    <div class="social-row">
-      <a class="vip-btn" href="https://maps.google.com/?q=Sunil+Gupta+Market+Yakubpur+Auraiya"
-         target="_blank" rel="noopener">📍 Open Google Maps</a>
-      <a class="vip-btn" href="tel:+917983199902">📞 Call Now</a>
-      <a class="vip-btn" href="https://wa.me/917983199902"
-         target="_blank" rel="noopener">💬 WhatsApp</a>
-    </div>
-  </div>
-</section>
-
-<section class="content" id="social">
-  <div class="section-title">
-    <h2>📲 <span>Connect With Us</span></h2>
-    <p>Follow our latest collections and offers.</p>
-  </div>
-  <div class="social-row">
-    <!-- Replace the Instagram URL with the shop's actual profile -->
-    <a class="vip-btn" href=https://www.instagram.com/ayushi_gautam_pg7/
-       target="_blank" rel="noopener">📸 Instagram</a>
-    <a class="vip-btn" href=https://www.facebook.com/share/1EKfxRD25a/
-       target="_blank" rel="noopener">ⓕ Facebook</a>
-    <a class="vip-btn" href="https://wa.me/917983199902"
-       target="_blank" rel="noopener">💬 WhatsApp</a>
-  </div>
-</section>
-</main>
-
-<footer>
-  <h3 style="color:var(--gold);margin-bottom:10px">💄 Akanksha Cosmetics Shop</h3>
-  <p>Sunil Gupta Market, Yakubpur, Auraiya, Uttar Pradesh</p>
-  <p style="margin-top:10px">© 2026 Akanksha Cosmetics Shop</p>
-</footer>
-
-<a class="whatsapp-float" href="https://wa.me/917983199902"
-   target="_blank" rel="noopener">💬 WhatsApp</a>
-
-<!-- LOGIN POPUP -->
-<div class="modal" id="loginModal" role="dialog"
-     aria-modal="true" aria-labelledby="loginTitle">
-  <div class="modal-box">
-    <div class="modal-heading">
-      <h2 id="loginTitle" style="color:var(--gold)">✦ VIP Login</h2>
-      <button class="close-btn" onclick="closeModal('loginModal')"
-        aria-label="Close">×</button>
-    </div>
-    <p class="notice">अपने अकाउंट में प्रवेश करें। यह अभी फ्रंटएंड डेमो है।</p>
-    <form id="loginForm">
-      <label for="loginEmail">Email Address</label>
-      <input id="loginEmail" type="email" required
-        autocomplete="email" placeholder="Enter your email">
-      <label for="loginPassword">Password</label>
-      <input id="loginPassword" type="password" required
-        autocomplete="current-password" placeholder="Enter password">
-      <button class="vip-btn full" type="submit">Login Securely</button>
-    </form>
-    <p id="loginMessage" class="notice" aria-live="polite"></p>
-    <button class="vip-btn secondary full" onclick="closeModal('loginModal')">
-      Close
-    </button>
-  </div>
-</div>
-
-<!-- CART POPUP -->
-<div class="modal" id="cartModal" role="dialog"
-     aria-modal="true" aria-labelledby="cartTitle">
-  <div class="modal-box">
-    <div class="modal-heading">
-      <h2 id="cartTitle" style="color:var(--gold)">🛒 My VIP Cart</h2>
-      <button class="close-btn" onclick="closeModal('cartModal')"
-        aria-label="Close">×</button>
-    </div>
-    <div id="cartItems"></div>
-    <h3 id="cartTotal" style="margin-top:18px">Total: ₹0</h3>
-    <button class="vip-btn full" onclick="checkoutWhatsApp()">
-      💬 Order on WhatsApp
-    </button>
-    <button class="vip-btn secondary full" onclick="closeModal('cartModal')">
-      Continue Shopping
-    </button>
-    <p class="notice">Demo cart: ऑर्डर भेजने से पहले WhatsApp पर विवरण जाँचें।</p>
-  </div>
-</div>
-  
-
-<script>
-/* ===== DEMO PRODUCT DATA =====
-   Replace sample names and prices with real shop inventory.
-*/
-const products = [
-  {id:1, name:"Premium Lipstick", price:299, icon:"💄", tag:"BEST SELLER"},
-  {id:2, name:"Luxury Perfume", price:499, icon:"🌸", tag:"FEATURED"},
-  {id:3, name:"Fancy Bangles", price:199, icon:"💎", tag:"POPULAR"},
-  {id:4, name:"Ladies Handbag", price:699, icon:"👜", tag:"VIP PICK"},
-  {id:5, name:"Foundation", price:399, icon:"🧴", tag:"FEATURED"},
-  {id:6, name:"Golden Jhumka", price:249, icon:"✨", tag:"BEST SELLER"},
-  {id:7, name:"Nail Polish", price:99, icon:"💅", tag:"POPULAR"},
-  {id:8, name:"Face Wash", price:149, icon:"🫧", tag:"DAILY CARE"}
-];
-
-let cart = [];
-let wishlist = [];
-
-const grid = document.getElementById("productGrid");
-
-function renderProducts(list) {
-  grid.innerHTML = "";
-
-  if (!list.length) {
-    grid.innerHTML = '<p class="empty">कोई प्रोडक्ट नहीं मिला। दूसरा नाम खोजें।</p>';
-    return;
-  }
-
-  list.forEach(product => {
-    const card = document.createElement("article");
-    card.className = "card";
-
-    const visual = document.createElement("div");
-    visual.className = "product-visual";
-    visual.textContent = product.icon;
-    visual.setAttribute("aria-label", product.name);
-
-    const tag = document.createElement("span");
-    tag.className = "product-tag";
-    tag.textContent = product.tag;
-
-    const title = document.createElement("h3");
-    title.textContent = product.name;
-
-    const price = document.createElement("div");
-    price.className = "price";
-    price.textContent = "₹" + product.price;
-
-    const actions = document.createElement("div");
-    actions.className = "card-actions";
-
-    const add = document.createElement("button");
-    add.className = "vip-btn";
-    add.textContent = "🛒 Add to Cart";
-    add.addEventListener("click", () => addToCart(product.id));
-
-    const heart = document.createElement("button");
-    heart.className = "vip-btn secondary";
-    heart.textContent = wishlist.includes(product.id)
-      ? "♥ Saved" : "♡ Wishlist";
-    heart.addEventListener("click", () => toggleWishlist(product.id));
-
-    actions.append(add, heart);
-    card.append(visual, tag, title, price, actions);
-    grid.appendChild(card);
-  });
-}
-
-function searchProducts() {
-  const query = document.getElementById("searchInput")
-    .value.trim().toLowerCase();
-
-  renderProducts(products.filter(p =>
-    p.name.toLowerCase().includes(query) ||
-    p.tag.toLowerCase().includes(query)
-  ));
-}
-
-document.getElementById("searchInput")
-  .addEventListener("input", searchProducts);
-
-function focusSearch() {
-  document.getElementById("searchArea").scrollIntoView({behavior:"smooth"});
-  document.getElementById("searchInput").focus({preventScroll:true});
-}
-
-function addToCart(id) {
-  const existing = cart.find(item => item.id === id);
-  if (existing) existing.qty++;
-  else cart.push({id, qty:1});
-  updateCart();
-}
-
-function changeQty(id, amount) {
-  const item = cart.find(item => item.id === id);
-  if (!item) return;
-  item.qty += amount;
-  if (item.qty <= 0) cart = cart.filter(item => item.id !== id);
-  updateCart();
-}
-
-function updateCart() {
-  document.getElementById("cartCount").textContent =
-    cart.reduce((sum,item) => sum + item.qty, 0);
-
-  const container = document.getElementById("cartItems");
-  container.replaceChildren();
-
-  if (!cart.length) {
-    const empty = document.createElement("p");
-    empty.className = "notice";
-    empty.textContent = "आपका Cart अभी खाली है।";
-    container.appendChild(empty);
-  }
-
-  let total = 0;
-
-  cart.forEach(item => {
-    const product = products.find(p => p.id === item.id);
-    total += product.price * item.qty;
-
-    const row = document.createElement("div");
-    row.className = "cart-item";
-
-    const details = document.createElement("p");
-    details.textContent = product.name + " × " + item.qty +
-      " = ₹" + (product.price * item.qty);
-
-    const minus = document.createElement("button");
-    minus.className = "vip-btn secondary";
-    minus.textContent = "−";
-    minus.setAttribute("aria-label", "Decrease quantity");
-    minus.addEventListener("click", () => changeQty(item.id,-1));
-
-    const plus = document.createElement("button");
-    plus.className = "vip-btn secondary";
-    plus.textContent = "+";
-    plus.setAttribute("aria-label", "Increase quantity");
-    plus.addEventListener("click", () => changeQty(item.id,1));
-
-    row.append(details, minus, plus);
-    container.appendChild(row);
-  });
-
-  document.getElementById("cartTotal").textContent = "Total: ₹" + total;
-}
-
-function openCart() {
-  updateCart();
-  openModal("cartModal");
-}
-
-function toggleWishlist(id) {
-  wishlist = wishlist.includes(id)
-    ? wishlist.filter(item => item !== id)
-    : [...wishlist, id];
-  renderProducts(products.filter(p =>
-    (p.name + " " + p.tag).toLowerCase()
-      .includes(document.getElementById("searchInput").value.trim().toLowerCase())
-  ));
-}
-
-function checkoutWhatsApp() {
-  if (!cart.length) {
-    alert("पहले Cart में प्रोडक्ट जोड़ें।");
-    return;
-  }
-
-  const lines = cart.map(item => {
-    const p = products.find(product => product.id === item.id);
-    return p.name + " x " + item.qty + " = ₹" + p.price * item.qty;
-  });
-
-  const total = cart.reduce((sum,item) => {
-    const p = products.find(product => product.id === item.id);
-    return sum + p.price * item.qty;
-  },0);
-
-  const message = "Namaste Akanksha Cosmetics Shop! My order:\n" +
-    lines.join("\n") + "\nTotal: ₹" + total +
-    "\nPlease confirm availability and final price.";
-
-  window.open("https://wa.me/917983199902?text=" +
-    encodeURIComponent(message), "_blank", "noopener");
-}
-
-function openLogin() { openModal("loginModal"); }
-
-function openModal(id) {
-  document.getElementById(id).classList.add("show");
-}
-
-function closeModal(id) {
-  document.getElementById(id).classList.remove("show");
-}
-
-document.querySelectorAll(".modal").forEach(modal => {
-  modal.addEventListener("click", event => {
-    if (event.target === modal) modal.classList.remove("show");
-  });
-});
-
-document.addEventListener("keydown", event => {
-  if (event.key === "Escape") {
-    document.querySelectorAll(".modal")
-      .forEach(modal => modal.classList.remove("show"));
-  }
-});
-
-function toggleMenu() {
-  document.getElementById("nav").classList.toggle("open");
-}
-
-function closeMenu() {
-  document.getElementById("nav").classList.remove("open");
-}
-
-function checkoutLoginDemo() {
-  // No real authentication is implemented in this frontend.
-}
-
-document.getElementById("loginForm").addEventListener("submit", event => {
-  event.preventDefault();
-  document.getElementById("loginMessage").textContent =
-    "यह UI डेमो है। असली Login के लिए सुरक्षित Backend और Database जोड़ना होगा।";
-});
-
-/* Dark/light theme */
-document.querySelector(".brand").addEventListener("click", () => {});
-function toggleTheme() {
-  document.body.classList.toggle("light");
-}
-
-/* Initial product display */
-renderProducts(products);
-updateCart();
-</script>
-</body>
-</html>
-
-<!-- 💎 Akanksha Cosmetics VIP Store -->
-
-<div class="product-card">
-    <div class="product-image">💄</div>
-    <h3>Premium Lipstick</h3>
-    <p>Price: ₹199</p>
-
-    <button onclick="buyNow(
-        'Premium Lipstick',
-        199,
-        '💄'
-    )">
-        🛒 Buy Now
-    </button>
-</div>
-
-<div class="product-card">
-    <div class="product-image">👜</div>
-    <h3>Luxury Handbag</h3>
-    <p>Price: ₹599</p>
-
-    <button onclick="buyNow(
-        'Luxury Handbag',
-        599,
-        '👜'
-    )">
-        🛒 Buy Now
-    </button>
-</div>
-
-<div class="product-card">
-    <div class="product-image">💍</div>
-    <h3>Royal Jewellery Set</h3>
-    <p>Price: ₹299</p>
-
-    <button onclick="buyNow(
-        'Royal Jewellery Set',
-        299,
-        '💍'
-    )">
-        🛒 Buy Now
-    </button>
-</div>
-
-<style>
-.product-card {
-    background: linear-gradient(145deg, #1a0928, #401044);
-    color: white;
-    padding: 22px;
-    margin: 18px auto;
-    max-width: 320px;
-    border-radius: 20px;
-    text-align: center;
-    border: 1px solid #ffd700;
-    box-shadow: 0 0 18px #a855f7;
-    font-family: Arial, sans-serif;
-}
-
-.product-image {
-    font-size: 65px;
-    margin-bottom: 12px;
-}
-
-.product-card h3 {
-    color: #ffd700;
-}
-
-.product-card button {
-    background: linear-gradient(90deg, #ffd700, #ff9f43);
-    color: #260b30;
-    padding: 13px 25px;
-    border: none;
-    border-radius: 30px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 12px;
-}
-
-.product-card button:hover {
-    transform: scale(1.05);
-}
-</style>
-
-<script>
-function buyNow(productName, price, emoji) {
-
-    // Store WhatsApp number with country code
-    const whatsappNumber = "917983199902";
-
-    // Create a pre-filled order message
-    const message =
-`💎 *AKANKSHA COSMETICS — VIP STORE* 💎
-
-Hello Ankit Bhai! 👋
-
-🛍️ *I want to order this product:*
-
-${emoji} *Product:* ${productName}
-💰 *Price:* ₹${price}
-
-📦 *Please confirm availability.*
-🚚 Please share delivery details.
-
-🙏 Thank you!
-❤️ Akanksha Cosmetics VIP Store`;
-
-    // Encode message for WhatsApp
-    const encodedMessage = encodeURIComponent(message);
-
-    // Open WhatsApp with the order message
-    const whatsappURL =
-        `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-
-    window.open(whatsappURL, "_blank");
-}
-</script>
 <!-- ==================================================
  STEP 21: AKANKSHA COSMETICS VIP PREMIUM PRODUCTS
  Is section ko apne existing HTML ke <body> ke andar
@@ -2113,51 +3240,356 @@ ${emoji} *Product:* ${productName}
   updateCart();
 })();
 </script>
-<!-- =====================================================
-      LOGIN MODAL 
-===================================================== -->
-
-<div
-    class="modal"
-    id="loginModal">
-
-    <div class="modalBox">
-
-        <button
-            class="close"
-            onclick="closeModal('loginModal')">
-
-            ×
-
-        </button>
-
-        <h2>
-            👑 VIP LOGIN
-        </h2>
-
-        <p style="color:#888;margin-bottom:20px;">
-            Welcome to Akanksha Cosmetics
-        </p>
 
 
-        <input
-            id="loginPhone"
-            type="tel"
-            maxlength="10"
-            placeholder="Enter Mobile Number">
+<!-- 💎 END AKANKSHA COSMETICS VIP STORE -->
 
+</body>
+</html>
 
-        <button
-            class="actionBtn"
-            onclick="loginDemo()">
+<section class="content" id="products">
+  <div class="section-title">
+    <h2>💎 <span>VIP Collection</span></h2>
+    <p>Featured Products • Best Sellers • Premium Style</p>
+  </div>
+  <div class="grid" id="productGrid"></div>
+</section>
 
-            ✦ SEND OTP ✦
-
-        </button>
-
+<section class="content" id="location">
+  <div class="section-title">
+    <h2>📍 <span>Visit Our Store</span></h2>
+    <p>Akanksha Cosmetics Shop · Yakubpur, Auraiya, Uttar Pradesh</p>
+  </div>
+  <div class="location-box">
+    <h3>💎 Akanksha Cosmetics Shop</h3>
+    <p style="margin-top:12px">
+      Sunil Gupta Market, Yakubpur, Auraiya, UP<br>
+      📞 7983199902
+    </p>
+    <div class="social-row">
+      <a class="vip-btn" href="https://maps.google.com/?q=Sunil+Gupta+Market+Yakubpur+Auraiya"
+         target="_blank" rel="noopener">📍 Open Google Maps</a>
+      <a class="vip-btn" href="tel:+917983199902">📞 Call Now</a>
+      <a class="vip-btn" href="https://wa.me/917983199902"
+         target="_blank" rel="noopener">💬 WhatsApp</a>
     </div>
+  </div>
+</section>
 
+<section class="content" id="social">
+  <div class="section-title">
+    <h2>📲 <span>Connect With Us</span></h2>
+    <p>Follow our latest collections and offers.</p>
+  </div>
+  <div class="social-row">
+    <!-- Replace the Instagram URL with the shop's actual profile -->
+    <a class="vip-btn" href=https://www.instagram.com/ayushi_gautam_pg7/
+       target="_blank" rel="noopener">📸 Instagram</a>
+    <a class="vip-btn" href=https://www.facebook.com/share/1EKfxRD25a/
+       target="_blank" rel="noopener">ⓕ Facebook</a>
+    <a class="vip-btn" href="https://wa.me/917983199902"
+       target="_blank" rel="noopener">💬 WhatsApp</a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <h3 style="color:var(--gold);margin-bottom:10px">💄 Akanksha Cosmetics Shop</h3>
+  <p>Sunil Gupta Market, Yakubpur, Auraiya, Uttar Pradesh</p>
+  <p style="margin-top:10px">© 2026 Akanksha Cosmetics Shop</p>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/917983199902"
+   target="_blank" rel="noopener">💬 WhatsApp</a>
+
+<!-- LOGIN POPUP -->
+<div class="modal" id="loginModal" role="dialog"
+     aria-modal="true" aria-labelledby="loginTitle">
+  <div class="modal-box">
+    <div class="modal-heading">
+      <h2 id="loginTitle" style="color:var(--gold)">✦ VIP Login</h2>
+      <button class="close-btn" onclick="closeModal('loginModal')"
+        aria-label="Close">×</button>
+    </div>
+    <p class="notice">अपने अकाउंट में प्रवेश करें। यह अभी फ्रंटएंड डेमो है।</p>
+    <form id="loginForm">
+      <label for="loginEmail">Email Address</label>
+      <input id="loginEmail" type="email" required
+        autocomplete="email" placeholder="Enter your email">
+      <label for="loginPassword">Password</label>
+      <input id="loginPassword" type="password" required
+        autocomplete="current-password" placeholder="Enter password">
+      <button class="vip-btn full" type="submit">Login Securely</button>
+    </form>
+    <p id="loginMessage" class="notice" aria-live="polite"></p>
+    <button class="vip-btn secondary full" onclick="closeModal('loginModal')">
+      Close
+    </button>
+  </div>
 </div>
+
+<!-- CART POPUP -->
+<div class="modal" id="cartModal" role="dialog"
+     aria-modal="true" aria-labelledby="cartTitle">
+  <div class="modal-box">
+    <div class="modal-heading">
+      <h2 id="cartTitle" style="color:var(--gold)">🛒 My VIP Cart</h2>
+      <button class="close-btn" onclick="closeModal('cartModal')"
+        aria-label="Close">×</button>
+    </div>
+    <div id="cartItems"></div>
+    <h3 id="cartTotal" style="margin-top:18px">Total: ₹0</h3>
+    <button class="vip-btn full" onclick="checkoutWhatsApp()">
+      💬 Order on WhatsApp
+    </button>
+    <button class="vip-btn secondary full" onclick="closeModal('cartModal')">
+      Continue Shopping
+    </button>
+    <p class="notice">Demo cart: ऑर्डर भेजने से पहले WhatsApp पर विवरण जाँचें।</p>
+  </div>
+</div>
+  
+
+<script>
+/* ===== DEMO PRODUCT DATA =====
+   Replace sample names and prices with real shop inventory.
+*/
+const products = [
+  {id:1, name:"Premium Lipstick", price:299, icon:"💄", tag:"BEST SELLER"},
+  {id:2, name:"Luxury Perfume", price:499, icon:"🌸", tag:"FEATURED"},
+  {id:3, name:"Fancy Bangles", price:199, icon:"💎", tag:"POPULAR"},
+  {id:4, name:"Ladies Handbag", price:699, icon:"👜", tag:"VIP PICK"},
+  {id:5, name:"Foundation", price:399, icon:"🧴", tag:"FEATURED"},
+  {id:6, name:"Golden Jhumka", price:249, icon:"✨", tag:"BEST SELLER"},
+  {id:7, name:"Nail Polish", price:99, icon:"💅", tag:"POPULAR"},
+  {id:8, name:"Face Wash", price:149, icon:"🫧", tag:"DAILY CARE"}
+];
+
+let cart = [];
+let wishlist = [];
+
+const grid = document.getElementById("productGrid");
+
+function renderProducts(list) {
+  grid.innerHTML = "";
+
+  if (!list.length) {
+    grid.innerHTML = '<p class="empty">कोई प्रोडक्ट नहीं मिला। दूसरा नाम खोजें।</p>';
+    return;
+  }
+
+  list.forEach(product => {
+    const card = document.createElement("article");
+    card.className = "card";
+
+    const visual = document.createElement("div");
+    visual.className = "product-visual";
+    visual.textContent = product.icon;
+    visual.setAttribute("aria-label", product.name);
+
+    const tag = document.createElement("span");
+    tag.className = "product-tag";
+    tag.textContent = product.tag;
+
+    const title = document.createElement("h3");
+    title.textContent = product.name;
+
+    const price = document.createElement("div");
+    price.className = "price";
+    price.textContent = "₹" + product.price;
+
+    const actions = document.createElement("div");
+    actions.className = "card-actions";
+
+    const add = document.createElement("button");
+    add.className = "vip-btn";
+    add.textContent = "🛒 Add to Cart";
+    add.addEventListener("click", () => addToCart(product.id));
+
+    const heart = document.createElement("button");
+    heart.className = "vip-btn secondary";
+    heart.textContent = wishlist.includes(product.id)
+      ? "♥ Saved" : "♡ Wishlist";
+    heart.addEventListener("click", () => toggleWishlist(product.id));
+
+    actions.append(add, heart);
+    card.append(visual, tag, title, price, actions);
+    grid.appendChild(card);
+  });
+}
+
+function searchProducts() {
+  const query = document.getElementById("searchInput")
+    .value.trim().toLowerCase();
+
+  renderProducts(products.filter(p =>
+    p.name.toLowerCase().includes(query) ||
+    p.tag.toLowerCase().includes(query)
+  ));
+}
+
+document.getElementById("searchInput")
+  .addEventListener("input", searchProducts);
+
+function focusSearch() {
+  document.getElementById("searchArea").scrollIntoView({behavior:"smooth"});
+  document.getElementById("searchInput").focus({preventScroll:true});
+}
+
+function addToCart(id) {
+  const existing = cart.find(item => item.id === id);
+  if (existing) existing.qty++;
+  else cart.push({id, qty:1});
+  updateCart();
+}
+
+function changeQty(id, amount) {
+  const item = cart.find(item => item.id === id);
+  if (!item) return;
+  item.qty += amount;
+  if (item.qty <= 0) cart = cart.filter(item => item.id !== id);
+  updateCart();
+}
+
+function updateCart() {
+  document.getElementById("cartCount").textContent =
+    cart.reduce((sum,item) => sum + item.qty, 0);
+
+  const container = document.getElementById("cartItems");
+  container.replaceChildren();
+
+  if (!cart.length) {
+    const empty = document.createElement("p");
+    empty.className = "notice";
+    empty.textContent = "आपका Cart अभी खाली है।";
+    container.appendChild(empty);
+  }
+
+  let total = 0;
+
+  cart.forEach(item => {
+    const product = products.find(p => p.id === item.id);
+    total += product.price * item.qty;
+
+    const row = document.createElement("div");
+    row.className = "cart-item";
+
+    const details = document.createElement("p");
+    details.textContent = product.name + " × " + item.qty +
+      " = ₹" + (product.price * item.qty);
+
+    const minus = document.createElement("button");
+    minus.className = "vip-btn secondary";
+    minus.textContent = "−";
+    minus.setAttribute("aria-label", "Decrease quantity");
+    minus.addEventListener("click", () => changeQty(item.id,-1));
+
+    const plus = document.createElement("button");
+    plus.className = "vip-btn secondary";
+    plus.textContent = "+";
+    plus.setAttribute("aria-label", "Increase quantity");
+    plus.addEventListener("click", () => changeQty(item.id,1));
+
+    row.append(details, minus, plus);
+    container.appendChild(row);
+  });
+
+  document.getElementById("cartTotal").textContent = "Total: ₹" + total;
+}
+
+function openCart() {
+  updateCart();
+  openModal("cartModal");
+}
+
+function toggleWishlist(id) {
+  wishlist = wishlist.includes(id)
+    ? wishlist.filter(item => item !== id)
+    : [...wishlist, id];
+  renderProducts(products.filter(p =>
+    (p.name + " " + p.tag).toLowerCase()
+      .includes(document.getElementById("searchInput").value.trim().toLowerCase())
+  ));
+}
+
+function checkoutWhatsApp() {
+  if (!cart.length) {
+    alert("पहले Cart में प्रोडक्ट जोड़ें।");
+    return;
+  }
+
+  const lines = cart.map(item => {
+    const p = products.find(product => product.id === item.id);
+    return p.name + " x " + item.qty + " = ₹" + p.price * item.qty;
+  });
+
+  const total = cart.reduce((sum,item) => {
+    const p = products.find(product => product.id === item.id);
+    return sum + p.price * item.qty;
+  },0);
+
+  const message = "Namaste Akanksha Cosmetics Shop! My order:\n" +
+    lines.join("\n") + "\nTotal: ₹" + total +
+    "\nPlease confirm availability and final price.";
+
+  window.open("https://wa.me/917983199902?text=" +
+    encodeURIComponent(message), "_blank", "noopener");
+}
+
+function openLogin() { openModal("loginModal"); }
+
+function openModal(id) {
+  document.getElementById(id).classList.add("show");
+}
+
+function closeModal(id) {
+  document.getElementById(id).classList.remove("show");
+}
+
+document.querySelectorAll(".modal").forEach(modal => {
+  modal.addEventListener("click", event => {
+    if (event.target === modal) modal.classList.remove("show");
+  });
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") {
+    document.querySelectorAll(".modal")
+      .forEach(modal => modal.classList.remove("show"));
+  }
+});
+
+function toggleMenu() {
+  document.getElementById("nav").classList.toggle("open");
+}
+
+function closeMenu() {
+  document.getElementById("nav").classList.remove("open");
+}
+
+function checkoutLoginDemo() {
+  // No real authentication is implemented in this frontend.
+}
+
+document.getElementById("loginForm").addEventListener("submit", event => {
+  event.preventDefault();
+  document.getElementById("loginMessage").textContent =
+    "यह UI डेमो है। असली Login के लिए सुरक्षित Backend और Database जोड़ना होगा।";
+});
+
+/* Dark/light theme */
+document.querySelector(".brand").addEventListener("click", () => {});
+function toggleTheme() {
+  document.body.classList.toggle("light");
+}
+
+/* Initial product display */
+renderProducts(products);
+updateCart();
+</script>
+</body>
+</html>
+
 
 <!-- ==========================================
  AKANKSHA COSMETICS VIP ORDER SYSTEM
